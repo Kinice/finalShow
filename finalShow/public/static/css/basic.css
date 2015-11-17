@@ -18,3 +18,5 @@ html {overflow-y: scroll;}
 /* css common */
 .clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
 .clearfix { *zoom:1; }
+.fl{ float: left; }
+.fr{ float: right; }

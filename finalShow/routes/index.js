@@ -13,7 +13,6 @@ module.exports = function(app) {
         res.render('index', {title: '注册-Kinice的个人博客'});
     });
     app.post('/reg', function (req, res) {
-
     });
     //登录
     app.get('/login', function (req, res) {
@@ -30,5 +29,13 @@ module.exports = function(app) {
     });
     //登出
     app.get('/logout', function (req, res) {
+    });
+    app.get('/about', function (req, res) {
+        res.render('about', {title: 'Kinice本人-Kinice的个人博客'});
+    });
+    app.get('/articalList', function (req, res) {
+        res.render('articalList', {title: '文章列表-Kinice的个人博客'});
+    });
+    app.get('/article', function (req, res) {
     });
 };
