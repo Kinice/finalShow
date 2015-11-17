@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
+var settings = require('./settings');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
@@ -27,6 +30,16 @@ app.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
 });
 
+app.use(session({
+    secret: settings.cookieSecret,
+    key: settings.db,//cookie name
+    cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+    store: new MongoStore({
+        db: settings.db,
+        host: settings.host,
+        port: settings.port
+    })
+}));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
