@@ -1,8 +1,4 @@
 module.exports = function(app) {
-    app.get('/', function (req, res) {
-        res.render('index', { title: 'Express' });
-    });
-
     app.get('/test', function (req, res) {
         res.send('<h1>反正我知道没人会看这个页面的。</h1>');
         res.send('<h1>我这老师真的啥都不会不懂装懂。</h1>');
