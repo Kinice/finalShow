@@ -15,13 +15,51 @@ module.exports = function(app) {
         res.render('index', {title: '注册-Kinice的个人博客'});
     });
     app.post('/reg', function (req, res) {
+        var name = req.body.name,
+            password = req.body.password,
+            password_re = req.body['password-repeat'];
+        //check user two times the password is the same
+        if(password_re != password){
+            req.flash('error','双验证密码不符，禁止进入系统');
+            return res.redirect('/reg');
+        }
+        //md5md5md5md5md5md5md5md5md5md5
+        var md5 = crypto.createHash('md5'),
+            password = md5.update(req.body.password).digest('hex');
+        var newUser = new User({
+            name: name,
+            password: password,
+            email: req.body.email,
+            qq: req.body.qq,
+            phone: req.body.phone
+        });
+        //check if the Database existed
+        User.get(newUser.name, function(err,user){
+            if(err){
+                req.flash('error',err);
+                return res.redirect('/');
+            }
+            if(user){
+                req.flash('error','人员身份冲突，无法确定是否为侵入者');
+                return res.redirect('/reg');
+            }
+            //add new user
+            newUser.save(function(err,user){
+               if(err){
+                   req.flash('error',err);
+                   return res.redirect('/reg');
+               }
+               req.session.user = user;//save user`s information into session
+                req.flash('success','身份确认无误，信息写入');
+                res.redirect('/');
+            });
+        });
     });
     //登录
     app.get('/login', function (req, res) {
         res.render('index', {title: '登陆-Kinice的个人博客'});
     });
     app.post('/login', function (req, res) {
-
     });
     //发表
     app.get('/post', function (req, res) {
