@@ -62,7 +62,7 @@ User.get = function(name, callback){
             }
             //find user(name) value equals name -- a document
             collection.findOne({
-                name: name;
+                name: name
             },function(err,user){
                 mongodb.close();
                 if(err){
