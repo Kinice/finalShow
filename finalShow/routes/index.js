@@ -1,3 +1,5 @@
+var crypto = require('crypto'),
+    User = require('../models/user.js');
 module.exports = function(app) {
     app.get('/test', function (req, res) {
         res.send('<h1>反正我知道没人会看这个页面的。</h1>');
