@@ -26,12 +26,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-routes(app);
-
-app.listen(app.get('port'), function() {
-    console.log('Express server listening on port ' + app.get('port'));
-});
-
 app.use(session({
     secret: settings.cookieSecret,
     key: settings.db,//cookie name
@@ -40,8 +34,17 @@ app.use(session({
         db: settings.db,
         host: settings.host,
         port: settings.port
-    })
+    }),
+    resave:false,
+    saveUninitialized:true
 }));
+routes(app);
+
+app.listen(app.get('port'), function() {
+    console.log('Express server listening on port ' + app.get('port'));
+});
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

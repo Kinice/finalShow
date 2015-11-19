@@ -1,18 +1,24 @@
 var crypto = require('crypto'),
     User = require('../models/user.js');
 module.exports = function(app) {
-    app.get('/test', function (req, res) {
-        res.send('<h1>反正我知道没人会看这个页面的。</h1>');
-        res.send('<h1>我这老师真的啥都不会不懂装懂。</h1>');
-        res.send('<h1>没错没错说的就是你姜远明老师。</h1>');
-    });
     //主页
     app.get('/', function (req, res) {
-        res.render('index', {title: '主页-Kinice的个人博客'});
+        res.render('index', {
+            title: 'Kinice的个人博客',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
     });
     //注册
+    app.get('/reg', checkNotLogin);
     app.get('/reg', function (req, res) {
-        res.render('index', {title: '注册-Kinice的个人博客'});
+        res.render('reg', {
+            title: '注册-Kinice的个人博客',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
     });
     app.post('/reg', function (req, res) {
         var name = req.body.name,
@@ -49,36 +55,103 @@ module.exports = function(app) {
                    req.flash('error',err);
                    return res.redirect('/reg');
                }
-               req.session.user = user;//save user`s information into session
+                req.session.user = user;//save user`s information into session
                 req.flash('success','身份确认无误，信息写入');
                 res.redirect('/');
             });
         });
     });
     //登录
+    app.get('/login', checkNotLogin);
     app.get('/login', function (req, res) {
-        res.render('index', {title: '登陆-Kinice的个人博客'});
+        res.render('login', {
+            title: '登陆-Kinice的个人博客',
+            user:req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
     });
     app.post('/login', function (req, res) {
+        //md5
+        var md5 = crypto.createHash('md5'),
+            password = md5.update(req.body.password).digest('hex');
+        //check if the user exsisted
+        User.get(req.body.name, function(err, user){
+            if(!user){
+                req.flash('error','检测不到身份信息，疑似入侵者');
+                return res.redirect('/login');
+            }
+            //check password
+            if(user.password != password){
+                req.flash('error','密码验证失败！警报！');
+                return res.redirect('/login');
+            }
+            //success
+            req.session.user = user;
+            req.flash('success','身份验证通过，准许通过');
+            res.redirect('/')
+        });
     });
     //发表
+    app.get('/post', checkLogin);
     app.get('/post', function (req, res) {
-        res.render('index', {title: '发表文章-Kinice的个人博客'});
+        res.render('post', {
+            title: '发表文章-Kinice的个人博客',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
     });
     app.post('/post', function (req, res) {
     });
     //登出
+    app.get('/logout', checkLogin);
     app.get('/logout', function (req, res) {
+        req.session.user = null;
+        req.flash('success','成功断开与本博客的连接');
+        res.redirect('/');
     });
     //about
     app.get('/about', function (req, res) {
-        res.render('about', {title: 'Kinice本人-Kinice的个人博客'});
+        res.render('about', {
+            title: 'Kinice本人-Kinice的个人博客',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
     });
-    //ArticalList
-    app.get('/articalList', function (req, res) {
-        res.render('articalList', {title: '文章列表-Kinice的个人博客'});
+    //Article List
+    app.get('/articleList', function (req, res) {
+        res.render('articleList', {
+            title: '文章列表-Kinice的个人博客',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
     });
     //article
     app.get('/article', function (req, res) {
+        res.render('article', {
+            title: '文章-Kinice的个人博客',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
     });
+
+    function checkLogin(req, res, next) {
+        if (!req.session.user) {
+            req.flash('error', '未登录!');
+            res.redirect('/login');
+        }
+        next();
+    }
+
+    function checkNotLogin(req, res, next) {
+        if (req.session.user) {
+            req.flash('error', '已登录!');
+            res.redirect('back');
+        }
+        next();
+    }
 };

@@ -36,3 +36,16 @@
     border-bottom: 2px solid #00B7FF;
     color:#b94a48;
 }
+.u-nav{
+    float: left;
+    padding-right: 30px;
+}
+.u-user{
+    float: left;
+    height: 58px;
+    line-height: 58px;
+}
+.u-user h1{
+    float:left;
+    padding-right: 20px;
+}
