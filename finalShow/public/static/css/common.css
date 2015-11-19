@@ -2,8 +2,9 @@
 .g-hd{                  /*HEADER!!!!*/
     width: 100%;
     height: 58px;
-    background-color: #eeeeee;
+    background-color: #fbc599;
     position: relative;
+    color: #fff;
 }
 /*LOGO PART*/
 .m-logo{
@@ -31,6 +32,7 @@
     height: 100%;
     text-decoration: none;
     padding:0 20px;
+    color: #fff;
 }
 .m-nav ul li a:hover{
     border-bottom: 2px solid #00B7FF;
@@ -44,8 +46,51 @@
     float: left;
     height: 58px;
     line-height: 58px;
+    color: #fff;
+}
+.u-user a{
+    color: #fff;
 }
 .u-user h1{
     float:left;
     padding-right: 20px;
+}
+/*Index Part!!!!*/
+.g-bd{
+    width: 100%;
+    height: 2000px;
+}
+.g-top-info{
+    width:100%;
+    position: relative;
+    height: 400px;
+    background-image: url("../images/ntk128027.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.g-top-info:after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.45);
+}
+.m-myinfo{
+    position: absolute;
+    z-index: 1000;
+    width: 250px;
+    height: 100px;
+    bottom:20%;
+    left: 15%;
+    padding: 30px;
+}
+.m-myinfo h1{
+    font-size: 34px;
+    padding-bottom: 20px;
 }
