@@ -63,11 +63,12 @@
 .g-top-info{
     width:100%;
     position: relative;
-    height: 400px;
+    height: 50vh;
+    min-height: 300px;
     background-image: url("../images/ntk128027.jpg");
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: cover;
+    background-position: 50% 75%;
 }
 .g-top-info:after{
     content: '';
@@ -84,13 +85,16 @@
 .m-myinfo{
     position: absolute;
     z-index: 1000;
-    width: 250px;
+    width: 300px;
     height: 100px;
-    bottom:20%;
+    bottom:35%;
     left: 15%;
     padding: 30px;
 }
 .m-myinfo h1{
-    font-size: 34px;
+    font-size: 36px;
     padding-bottom: 20px;
+}
+.m-myinfo p{
+    font-size: 16px;
 }

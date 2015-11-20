@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><%= title %></title>
     <link rel="stylesheet" href="/static/css/basic.css" />
     <link rel="stylesheet" href="/static/css/common.css"/>
 </head>
 <body>
-<div class="g-hd">
+<header class="g-hd">
     <div class="m-logo">
         <h1><%= title %></h1>
     </div>
     <div class="m-nav">
-        <div class="u-nav">
+        <nav class="u-nav">
             <ul>
                 <li><a href="/">主页</a></li>
                 <li><a href="/about">关于我</a></li>
                 <li><a href="/articalList">文章列表</a></li>
             </ul>
-        </div>
+        </nav>
         <div class="u-user">
             <% if(success){ %>
                 <script>
@@ -44,5 +46,5 @@
             <% } %>
 
         </div>
-    </div>
+    </header>
 </div>
