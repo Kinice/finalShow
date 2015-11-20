@@ -15,6 +15,7 @@ ol,ul,li { list-style:none; }
 input, textarea, select, button { font:14px Verdana,Helvetica,Arial,sans-serif; }
 table { border-collapse:collapse; }
 html {overflow-y: scroll;}
+header,aside,nav,footer,section,article{ display: block; margin:0; padding:0;}
 /* css common */
 .clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
 .clearfix { *zoom:1; }
