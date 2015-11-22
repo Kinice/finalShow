@@ -56,10 +56,10 @@
     width: 100%;
     visibility: hidden;
     opacity: 0;
-    transition:opacity 0.3s;
-    -moz-transition:opacity 0.3s; /* Firefox 4 */
-    -webkit-transition:opacity 0.3s; /* Safari and Chrome */
-    -o-transition:opacity 0.3s;
+    transition:all 0.3s;
+    -moz-transition:all 0.3s; /* Firefox 4 */
+    -webkit-transition:all 0.3s; /* Safari and Chrome */
+    -o-transition:all 0.3s;
 }
 .nav-inside ul li{
     width: inherit;
