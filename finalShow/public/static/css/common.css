@@ -50,7 +50,7 @@
 .nav-inside ul{
     position: absolute;
     width: 100%;
-    display: none;
+    visibility: hidden;
 }
 .nav-inside ul li{
     width: inherit;
