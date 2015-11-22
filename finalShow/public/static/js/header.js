@@ -1,4 +1,4 @@
-$(function(){
+/*$(function(){
 	var timeout         = 100;
 	var closetimer		= 0;
 	var ddmenuitem      = 0;

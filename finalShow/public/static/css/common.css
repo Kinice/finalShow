@@ -47,10 +47,13 @@
     position: relative;
     z-index: 10001;
 }
+.nav-inside:hover ul{
+    display: block;
+}
 .nav-inside ul{
     position: absolute;
     width: 100%;
-    visibility: hidden;
+    display: none;
 }
 .nav-inside ul li{
     width: inherit;
@@ -60,11 +63,13 @@
     color: #ececee;
     display: block;
     text-align: center;
+    
 }
 .nav-inside ul li a:hover{
     color: #3b3e47;
     background-color: #ececee;
     text-decoration: none;
+    border-bottom: 2px solid #50c5c3;
 }
 .u-user{
     float: left;
