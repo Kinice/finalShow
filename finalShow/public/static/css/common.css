@@ -21,7 +21,7 @@
 /*NAV PART*/
 .u-nav{
     position: absolute;
-    right: 6%;
+    right: 4%;
 }
 .u-nav > ul > li{
     float: left;
@@ -39,9 +39,50 @@
     border-bottom: 2px inset #50c5c3;
     color:#50c5c3;
 }
-.u-nav{
-    float: left;
-    padding-right: 30px;
+.input-li{
+    width: 222px;
+    height: 45px;
+    font-size: 0;
+    letter-spacing:0;
+    padding-left: 5px;
+}
+.u-nav input[type='text']{
+    display: inline-block;
+    outline: none;
+    border: none;
+    width: 180px;
+    height: 32px;
+    font-size: 18px;
+    vertical-align: middle;
+    padding: 0 5px;
+    background-color: #555;
+    transition:all 0.5s;
+    -moz-transition:all 0.5s; /* Firefox 4 */
+    -webkit-transition:all 0.5s; /* Safari and Chrome */
+    -o-transition:all 0.5s;
+}
+.u-nav input[type='button']{
+    display: inline-block;
+    outline: none;
+    width: 32px;
+    border: none;
+    height: 32px;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: url('../images/gsearch-sprite.png');
+    background-position:0 0; 
+    background-color: #555;
+    transition:background-color 0.5s;
+    -moz-transition:background-color 0.5s; /* Firefox 4 */
+    -webkit-transition:background-color 0.5s; /* Safari and Chrome */
+    -o-transition:background-color 0.5s;
+}
+.u-nav input[type='text']:focus{
+    background-color: #fff;
+}
+.u-nav input[type='text']:focus + input[type='button']{
+    background-color: #fff;
+    background-position: 0 -40px;
 }
 .nav-inside{
     position: relative;

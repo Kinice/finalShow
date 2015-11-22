@@ -6,6 +6,7 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/static/css/basic.css" />
     <link rel="stylesheet" href="/static/css/common.css"/>
+    <link rel="stylesheet" href="/static/fonts/iconfont.css">
     <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
 </head>
 <body>
@@ -26,7 +27,10 @@
                     </ul>                
                 </li>
                 <li><a href="/message">留言</a></li>
-                <li><a href="/"></a></li>
+                <li class="input-li">
+                    <input  type="text" placeholder="search">
+                    <input type="button">
+                </li>
             </ul>
             <!-- <div class="u-user">
             <% if(success){ %>

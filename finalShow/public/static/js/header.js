@@ -27,6 +27,5 @@
 		$('.nav-inside').bind('mouseout',  jsddm_timer);
 	});
 	document.onclick = jsddm_close;
-});
-
+});*/
 
