@@ -48,12 +48,18 @@
     z-index: 10001;
 }
 .nav-inside:hover ul{
-    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 .nav-inside ul{
     position: absolute;
     width: 100%;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition:opacity 0.3s;
+    -moz-transition:opacity 0.3s; /* Firefox 4 */
+    -webkit-transition:opacity 0.3s; /* Safari and Chrome */
+    -o-transition:opacity 0.3s;
 }
 .nav-inside ul li{
     width: inherit;
