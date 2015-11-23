@@ -118,6 +118,7 @@
     text-decoration: none;
     border-bottom: 2px solid #50c5c3;
 }
+/* bu yao de part*/
 .u-user{
     float: left;
     height: 58px;
@@ -214,4 +215,47 @@
     border-color: #93c2ec;
     -webkit-box-shadow: 0 0 0 8px #e1ecf5;
     box-shadow: 0 0 0 8px #e1ecf5;
+}
+/* header responsible part */
+@media screen and (max-width: 800px) {
+    .m-logo{
+        width: 100%;
+        position: static;
+    }
+    .m-logo h1{
+        text-align: center;
+    }
+    .u-nav{
+        height: 58px;
+        width: 100%;
+        background-color: #3b3e47;
+        position: static;
+        text-align: center;
+    }
+    .u-nav ul{
+        display: inline-block;
+    }
+    .g-bd{
+        padding-top: 58px;
+    }
+    .m-myinfo{
+        white-space:nowrap;
+        width: auto;
+        top: 30%;
+        left: 50%;
+        transform:translate(-50%,-50%);
+        -webkit-transform:translate(-50%,-50%);
+        -ms-transform:translate(-50%,-50%);
+        -moz-transform:translate(-50%,-50%);
+        -o-transform:translate(-50%,-50%);
+    }
+    .m-myinfo p{
+        text-align: center;
+        padding-top: 50px;
+    }
+}
+@media screen and (max-width: 560px) {
+    .input-li{
+        display: none;
+    }
 }
