@@ -174,3 +174,44 @@
 .m-myinfo p{
     font-size: 16px;
 }
+/*REG AND LOGIN PART!!!!!!*/
+.g-inner-logreg{
+    width: 350px;
+    margin: 0 auto;
+    padding: 60px 0 50px 0;
+}
+.g-inner-logreg input {
+    width: 200px;
+    height: 25px;
+    margin-top: 20px;
+    right: 0px;
+    display: inline-block;
+    -webkit-box-shadow: 0 0 0 8px #eef7f9;
+    box-shadow: 0 0 0 8px #eef7f9;
+    border: 1px solid #cfdfe3;
+    outline: 0;
+    padding:0 6px;
+}
+.g-inner-logreg label{
+    display: inline-block;
+    width: 100px;
+    height: 29px;
+    margin-top: 20px;
+    text-align: right;
+}
+.g-inner-logreg .button{
+    display: block;
+    margin: 60px auto;
+    background-color: #deeef4;
+    color: #4d5a5e;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    outline: none;
+    height: 30px;
+}
+.g-inner-logreg input:focus{
+    border-color: #93c2ec;
+    -webkit-box-shadow: 0 0 0 8px #e1ecf5;
+    box-shadow: 0 0 0 8px #e1ecf5;
+}
