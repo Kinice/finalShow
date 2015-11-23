@@ -227,6 +227,7 @@
     background-color: #fff;
     margin:0;
     float: left;
+    position: relative;
 }
 .g-middle h1{
     font-size: 28px;
@@ -241,6 +242,16 @@
 }
 .m-article{
     padding: 14px 15px;
+}
+.g-middle:after{
+    content: "";
+    position: absolute;
+    top:0;
+    right: 0;
+    border:solid 14px;
+    border-color:  #f2f2f2 #f2f2f2 #aaa #aaa;
+    box-shadow: -2px 2px 2px #aaa;
+    border-radius: 1px;
 }
 .m-article p{
     word-wrap: break-word;
@@ -289,5 +300,8 @@
 @media screen and (max-width: 560px) {
     .input-li{
         display: none;
+    }
+    .u-nav > ul > li > a{
+        padding:0 10px;
     }
 }
