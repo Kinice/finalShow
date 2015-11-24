@@ -14,7 +14,7 @@ module.exports = function(app) {
     app.get('/reg', checkNotLogin);
     app.get('/reg', function (req, res) {
         res.render('reg', {
-            title: '注册-Kinice的个人博客',
+            title: 'Kinice的个人博客',
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
@@ -65,7 +65,7 @@ module.exports = function(app) {
     app.get('/login', checkNotLogin);
     app.get('/login', function (req, res) {
         res.render('login', {
-            title: '登陆-Kinice的个人博客',
+            title: 'Kinice的个人博客',
             user:req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
@@ -96,7 +96,7 @@ module.exports = function(app) {
     app.get('/post', checkLogin);
     app.get('/post', function (req, res) {
         res.render('post', {
-            title: '发表文章-Kinice的个人博客',
+            title: 'Kinice的个人博客',
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
@@ -114,7 +114,7 @@ module.exports = function(app) {
     //about
     app.get('/about', function (req, res) {
         res.render('about', {
-            title: 'Kinice本人-Kinice的个人博客',
+            title: 'Kinice的个人博客',
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
@@ -123,7 +123,7 @@ module.exports = function(app) {
     //Article List
     app.get('/articleList', function (req, res) {
         res.render('articleList', {
-            title: '文章列表-Kinice的个人博客',
+            title: 'Kinice的个人博客',
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
@@ -132,7 +132,7 @@ module.exports = function(app) {
     //article
     app.get('/article', function (req, res) {
         res.render('article', {
-            title: '文章-Kinice的个人博客',
+            title: 'Kinice的个人博客',
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
