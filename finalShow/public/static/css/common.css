@@ -27,6 +27,23 @@
     height: 58px;
     line-height: 58px;
 }
+.mobile-icon{
+    font-size: 24px;
+    color: #fff;
+    display: none;
+    height: 24px;
+    width: 24px;
+}
+.home{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.menu{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 /*NAV PART*/
 .u-nav{
     position: absolute;
@@ -308,6 +325,19 @@
         width: auto;
         text-align: center;
     }
+    .mobile-icon{
+        display: block;
+        padding-top: 15px;
+        padding-bottom: 5px;
+    }
+    .home{
+        padding-left: 30px;
+        padding-right: 5px;
+    }
+    .menu{
+        padding-right: 30px;
+        padding-left: 5px;
+    }
 }
 @media screen and (max-width: 560px) {
     .input-li{
@@ -318,5 +348,11 @@
     }
     .g-inner{
         width: 100%;
+    }
+    .home{
+        padding-left: 20px;
+    }
+    .menu{
+        padding-right: 20px;
     }
 }

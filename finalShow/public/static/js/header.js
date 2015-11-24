@@ -1,4 +1,4 @@
-$(function(){
+/*$(function(){
 	var timeout         = 100;
 	var closetimer		= 0;
 	var ddmenuitem      = 0;
@@ -27,5 +27,11 @@ $(function(){
 		$('.nav-inside').bind('mouseout',  timer);
 	});
 	document.onclick = close;
+});*/
+$(function(){
+	$('.mobile-icon').click(function() {
+		/* Act on the event */
+		alert("hello World!");
+	});
 });
 
