@@ -296,6 +296,18 @@
         text-align: center;
         padding-top: 50px;
     }
+    .g-inner{
+        width: 95%;
+        padding-top: 0;
+    }
+    .g-middle{
+        width: 100%;
+    }
+    .g-aside{
+        float: none;
+        width: auto;
+        text-align: center;
+    }
 }
 @media screen and (max-width: 560px) {
     .input-li{
@@ -303,5 +315,8 @@
     }
     .u-nav > ul > li > a{
         padding:0 10px;
+    }
+    .g-inner{
+        width: 100%;
     }
 }
