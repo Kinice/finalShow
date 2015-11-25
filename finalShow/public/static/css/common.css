@@ -44,6 +44,44 @@
     top: 0;
     right: 0;
 }
+.mobile-menu{
+    width: 90%;
+    padding:10px 0px;
+    border:1px solid #aaa;
+    background: #acd0ce;
+    position: absolute;
+    top: 56px;
+    right: 5%;
+    z-index: 100000;
+    border-radius: 4px;
+}
+.mobile-search{
+    padding: 5px 10px;
+    letter-spacing: 0;
+    font-size: 0;
+}
+.mobile-search input[type='text']{
+    display: inline-block;
+    outline: none;
+    border: none;
+    width: 95%;
+    height: 32px;
+    font-size: 18px;
+    vertical-align: middle;
+    padding: 0 5px;
+    background-color: #4d939f;
+    background-image: url('../images/search2.png');
+    background-position:98%; 
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    transition:all 0.5s;
+    -moz-transition:all 0.5s; /* Firefox 4 */
+    -webkit-transition:all 0.5s; /* Safari and Chrome */
+    -o-transition:all 0.5s;
+}
+.mobile-search input[type='text']:focus{
+    background-color: #ececee;
+}
 /*NAV PART*/
 .u-nav{
     position: absolute;
