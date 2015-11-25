@@ -47,13 +47,22 @@
 .mobile-menu{
     width: 90%;
     padding:10px 0px;
-    border:1px solid #aaa;
     background: #acd0ce;
     position: absolute;
     top: 56px;
     right: 5%;
     z-index: 100000;
     border-radius: 4px;
+}
+.mobile-menu:after{
+    content: "";
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent #acd0ce transparent;
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    z-index: 999999;
 }
 .mobile-search{
     padding: 5px 10px;
