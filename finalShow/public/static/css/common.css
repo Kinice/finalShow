@@ -62,7 +62,7 @@
     border-color: transparent transparent #acd0ce transparent;
     position: absolute;
     top: -20px;
-    right: 10px;
+    right: 4px;
     z-index: 999999;
 }
 .mobile-search{
@@ -374,7 +374,7 @@
         text-align: center;
     }
 }
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 567px) {
     .input-li{
         display: none;
     }
@@ -384,10 +384,13 @@
     .g-inner{
         width: 100%;
     }
-     .mobile-icon{
+    .mobile-menu{
+    }
+    .mobile-icon{
         display: block;
         padding-top: 15px;
         padding-bottom: 5px;
+        cursor: pointer;
     }
     .home{
         padding-left: 20px;

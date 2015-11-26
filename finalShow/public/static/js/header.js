@@ -29,9 +29,30 @@
 	document.onclick = close;
 });*/
 $(function(){
-	$('.mobile-icon').click(function() {
+	$('.menu').click(function() {
 		/* Act on the event */
-		alert("hello World!");
+        var randNum = Math.random();
+        if(randNum >= 0 && randNum <0.5){
+            menuSlide();
+        }else{
+            menuFade();
+        }
 	});
+    $('.home').click(function(){
+        window.location.href='/';
+    });
 });
-
+function menuSlide(){
+    if($('.mobile-menu').css('display') == 'block'){
+        $('.mobile-menu').slideUp(150);
+    }else{
+        $('.mobile-menu').slideDown(150);
+    }
+}
+function menuFade(){
+    if($('.mobile-menu').css('display') == 'block'){
+        $('.mobile-menu').fadeOut(150);
+    }else{
+        $('.mobile-menu').fadeIn(150);
+    }
+}
