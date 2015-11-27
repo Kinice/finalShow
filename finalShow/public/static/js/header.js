@@ -41,6 +41,19 @@ $(function(){
     $('.home').click(function(){
         window.location.href='/';
     });
+    $(document).scroll(function(){
+        if(getScrollTop() <= 200){
+            $('.back-to-top').fadeOut();
+        }else if(getScrollTop() >= 200){
+            //Back To Top
+            $('.back-to-top').fadeIn();
+        }
+    });
+    $('.back-to-top').click(function(){
+        $('html,body').animate({
+            scrollTop: 0
+        },500);
+    });
 });
 function menuSlide(){
     if($('.mobile-menu').css('display') == 'block'){
@@ -55,4 +68,7 @@ function menuFade(){
     }else{
         $('.mobile-menu').fadeIn(150);
     }
+}
+function getScrollTop(){
+    return $(document).scrollTop();
 }

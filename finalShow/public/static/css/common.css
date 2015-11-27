@@ -315,8 +315,36 @@
     word-break: normal;
     line-height: 190%;
 }
+
+/* Other Part */
+
+.back-to-top{
+    cursor: pointer;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    color: #000;
+    background-color: #888;
+    font-size: 34px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    position: fixed;
+    bottom:150px;
+    right: 150px;
+    display: none;
+    -webkit-transition: background-color 0.15s;
+    -moz-transition: background-color 0.15s;
+    -ms-transition: background-color 0.15s;
+    -o-transition: background-color 0.15s;
+    transition: background-color 0.15s;
+}
+.back-to-top:hover{
+    background-color: #bbb;
+}
 /* responsible part */
 /* header */
+
 @media screen and (max-width: 800px) {
     .m-logo{
         width: 100%;
@@ -364,6 +392,16 @@
         float: none;
         width: auto;
         text-align: center;
+    }
+    .back-to-top{
+        width: 30px;
+        height: 30px;
+        background-color: rgba(220,220,220,0.5);
+        font-size: 15px;
+        line-height: 30px;
+        bottom: 25px;
+        right: 25px;
+        border-radius: 4px;
     }
 }
 @media screen and (max-width: 567px) {
