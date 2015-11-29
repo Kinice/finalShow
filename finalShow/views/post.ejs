@@ -1,9 +1,12 @@
 <%- include header %>
     <!-- post part -->
     <div class="g-bd">
-		<form method="post">
-			<label>标题：</label> <input name="postTitle" type="text" placeholder="主人要干什么">
-			<label>内容：</label> <textarea name="postContent" cols="30" rows="10"></textarea>
-		</form>
+    	<div class="g-inner-post">
+			<form method="post">
+				<label>标题：</label> <input name="title" type="text" placeholder="主人要干什么">
+				<label>内容：</label> <textarea name="post" cols="30" rows="10"></textarea>
+				<input type="submit" value="请求发布">
+			</form>
+		</div>
 	</div>
 <%- include footer %>
