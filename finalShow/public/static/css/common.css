@@ -129,7 +129,7 @@
     display: block;
     height: 100%;
     text-decoration: none;
-    padding: 0 14px;
+    padding: 0 16px;
     color: #ececee;
 }
 
@@ -258,7 +258,7 @@
 .g-top-info {
     width: 100%;
     position: relative;
-    height: 50vh;
+    height: 40vh;
     min-height: 300px;
     background-image: url("../images/ntk128027.jpg");
     background-repeat: no-repeat;
