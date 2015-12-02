@@ -424,11 +424,7 @@
     background-color: #bbb;
 }
 
-
 /* responsible part */
-
-
-/* header */
 
 @media screen and (max-width: 800px) {
     .m-logo {
@@ -489,7 +485,6 @@
         border-radius: 4px;
     }
 }
-
 @media screen and (max-width: 578px) {
     .input-li {
         display: none;

@@ -55,7 +55,7 @@ Post.prototype.save = function(callback){
 };
 
 //read article and other informations
-Post.get = function(name, callback){
+Post.getAllArticles = function(name, callback){
 	//Open Database
 	mongodb.open(function(err, db){
 		if(err){
@@ -81,11 +81,39 @@ Post.get = function(name, callback){
                 //Mark down
                 docs.forEach(function(doc){
                     doc.post = markdown.toHTML(doc.post);
-                    console.log(markdown.toHTML(doc.post));
                 });
 
 				callback(null, docs);
 			});
 		});
 	});
+};
+Post.getOneArticle = function(name,day,title,callback){
+  //Open Database
+  mongodb.open(function(err, db){
+      if(err){
+          return callback(err);
+      }
+      //Read posts collection
+      db.collection('posts', function(err,collection){
+          if(err){
+              mongodb.close();
+              return callback(err);
+          }
+          //Find Article by Name,day and title
+          collection.findOne({
+              'name': name,
+              'time.day': day,
+              'title': title
+          },function(err, doc){
+              mongodb.close();
+              if(err){
+                  return callback(err);
+              }
+              //MARKDOWN
+              doc.post = markdown.toHTML(doc.post);
+              callback(null, doc);
+          });
+      });
+  });
 };

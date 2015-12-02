@@ -4,7 +4,7 @@ var crypto = require('crypto'),
 module.exports = function(app) {
     //主页
     app.get('/', function (req, res) {
-        Post.get(null, function(err, posts){
+        Post.getAllArticles(null, function(err, posts){
             if(err){
                 posts = [];
             }
@@ -148,12 +148,20 @@ module.exports = function(app) {
         });
     });
     //article
-    app.get('/article', function (req, res) {
-        res.render('article', {
-            title: 'Kinice的个人博客',
-            user: req.session.user,
-            success: req.flash('success').toString(),
-            error: req.flash('error').toString()
+    app.get('/article/:name/:day/:title', function (req, res) {
+        Post.getOneArticle(req.params.name, req.params.day, req.params.title, function(err, post){
+            if(err){
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('article', {
+                title: 'Kinice的个人博客',
+                articleTitle: req.params.title,
+                post: post,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
         });
     });
 

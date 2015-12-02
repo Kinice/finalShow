@@ -10,14 +10,27 @@ h1, h2, h3, h4, h5, h6 { font-weight:normal; font-size:100%; }
 address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
 a { color:#555; text-decoration:none; }
 a:hover { text-decoration:underline; }
-img { border:none; }
+img { border:none;border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; max-width:100%; }
 ol,ul,li { list-style:none; }
-input, textarea, select, button { font:14px Verdana,Helvetica,Arial,sans-serif; }
+input, textarea, select, button { font:14px Verdana,Helvetica,Arial,sans-serif; outline: 0;}
 table { border-collapse:collapse; }
 html {overflow-y: scroll;height: 100%;}
 header,aside,nav,footer,section,article{ display: block; margin:0; padding:0;}
+/* MarkDown */
+pre {background-color: #F8F8F8;border: 1px solid #CCCCCC;border-radius: 3px;overflow: auto;padding: 5px;}
+pre code {background-color: #F8F8F8;border: none;padding: 0;}
+code {font-family: Consolas, Monaco, Andale Mono, monospace;background-color:#F8F8F8;border: 1px solid #CCCCCC;border-radius: 3px;padding: 0 0.2em;line-height: 1;}
+pre > code {border: 0;margin: 0;padding: 0;}
+blockquote{color:#666666;margin:0;padding-left: 3em;border-left: 0.5em #EEE solid;}
+.m-article h1,.m-article h2,.m-article h3,.m-article h4,.m-article h5,.m-article h6{font-weight: bold;}
+.m-article h1{color: #000;font-size: 28px;}.m-article h2{border-bottom: 2px solid #cccccc;color: #000;font-size: 24px;}
+.m-article h3{font-size: 18px;border-bottom: 1px solid #ccc;}.m-article h4{font-size: 16px;}.m-article h5{font-size: 14px;}.m-article h6{color: #777;background-color: inherit;font-size: 14px;}
+.m-article hr{height: 0.2em;border: 0;color: #ccc;background-color: #ccc;}
+.m-article ul,.m-article ol { margin: 1em 0; padding: 0 0 0 2em; }li p:last-child { margin:0; }
+.m-article p, .m-article blockquote, .m-article ul, .m-article ol, .m-article dl, .m-article li, .m-article table, .m-article pre {margin: 15px 0;}
+.m-article p{margin:1em 0;}
 /* css common */
 .clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
-.clearfix { *zoom:1; }
+.clearfix { zoom:1; }
 .fl{ float: left; }
 .fr{ float: right; }
