@@ -117,3 +117,37 @@ Post.getOneArticle = function(name,day,title,callback){
       });
   });
 };
+//read article and other informations
+Post.getArticlesByTag = function(tag, callback){
+    //Open Database
+    mongodb.open(function(err, db){
+        if(err){
+            return callback(err);
+        }
+        db.collection('posts', function(err, collection){
+            if(err){
+                mongodb.close();
+                return callback(err);
+            }
+            var query = {};
+            if(tag){
+                query.tag = tag;
+            }
+            //Search article by tag of query
+            collection.find(query).sort({
+                time: -1
+            }).toArray(function(err, docs){
+                mongodb.close();
+                if(err){
+                    return callback(err);
+                }
+                //Mark down
+                docs.forEach(function(doc){
+                    doc.post = markdown.toHTML(doc.post);
+                });
+
+                callback(null, docs);
+            });
+        });
+    });
+};
