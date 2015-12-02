@@ -144,7 +144,7 @@ module.exports = function(app) {
             if(err){
                 posts = [];
             }
-            res.render('index', {
+            res.render('articleList', {
                 title: 'Kinice的个人博客',
                 user: req.session.user,
                 posts: posts,

@@ -2,18 +2,32 @@
 <!-- list part -->
 <div class="g-bd">
     <div class="g-inner">
-        <% posts.forEach(function (post, index) { %>
-        <p><h2><a href="article/<%= post.name %>/<%= post.time.day %>/<%= post.title%>"><%= post.title %></a></h2></p>
-        <p class="info">
-            作者：<a href="#"><%= post.name %></a> |
-            日期：<%= post.time.day %>
-        </p>
-        <p>
-            标签：<%= post.tag %>
-        </p>
-        <p><%- post.post %></p>
+        <div class="m-kind-list">
+            <div class="m-kind">
+                <a href="/articleList/1">
+                    <img src="" alt=""/>
+                </a>
+            </div>
+            <div class="m-kind">
+                <a href="/articleList/2"></a>
+            </div>
+            <div class="m-kind">
+                <a href="/articleList/3"></a>
+            </div>
+        </div>
+        <div class="m-art-list">
+            <% posts.forEach(function (post, index) { %>
+            <p><h2><a href="article/<%= post.name %>/<%= post.time.day %>/<%= post.title%>"><%= post.title %></a></h2></p>
+            <p class="info">
+                作者：<a href="#"><%= post.name %></a> |
+                日期：<%= post.time.day %>
+            </p>
+            <p>
+                标签：<%= post.tag %>
+            </p>
+            <p><%- post.post %></p>
         <% }) %>
-        div.
+        </div>
     </div>
 </div>
 <%- include footer %>
