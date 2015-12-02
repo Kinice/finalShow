@@ -139,6 +139,21 @@ module.exports = function(app) {
         });
     });
     //Article List
+    app.get('/articleList/all', function(req,res){
+        Post.getAllArticles(null, function(err, posts){
+            if(err){
+                posts = [];
+            }
+            res.render('index', {
+                title: 'Kinice的个人博客',
+                user: req.session.user,
+                posts: posts,
+                all: 'y',
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    });
     app.get('/articleList/:tag', function (req, res) {
         Post.getArticlesByTag(req.params.tag, function(err, posts){
             if(err){
@@ -150,6 +165,7 @@ module.exports = function(app) {
                 title: 'Kinice的个人博客',
                 posts: posts,
                 user: req.session.user,
+                all: 'n',
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
             });
