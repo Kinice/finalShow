@@ -2,22 +2,53 @@
 <!-- list part -->
 <div class="g-bd">
     <div class="g-inner">
+        <% if(all == 'y'){ %>
         <div class="m-kind-list">
             <div class="m-kind">
-                <a href="/articleList/about-code">
-                    <img src="/static/images/list1.png" alt="about-code"/>
-                </a>
+                <div class="m-kind-img">
+                  <a href="/articleList/about-code"><img src="/static/images/list1.png" alt="about-code"/></a>
+                </div>
+                <div class="m-kind-info">
+                    <h2><a href="/articleList/about-code">工作日常</a></h2>
+                    <ul>
+                        <li>标签</li>
+                        <li>标签</li>
+                    </ul>
+                    <p>代码技术什么的在这个地方分享</p>
+                </div>
             </div>
             <div class="m-kind">
-                <a href="/articleList/brain-hole"><img src="/static/images/list2.png" alt="about-code"/></a>
+                <div class="m-kind-img">
+                    <a href="/articleList/brain-hole"><img src="/static/images/list2.png" alt="about-code"/></a>
+                </div>
+                <div class="m-kind-info">
+                    <h2><a href="/articleList/brain-hole">脑洞钻孔</a></h2>
+                    <ul>
+                        <li>标签</li>
+                        <li>标签</li>
+                    </ul>
+                    <p>纪录平常开脑洞喷射出来的汁液和豆腐乳</p>
+                </div>
             </div>
             <div class="m-kind">
-                <a href="/articleList/niu-b"><img src="/static/images/list3.jpg" alt="about-code"/></a>
+                <div class="m-kind-img">
+                    <a href="/articleList/niu-b"><img src="/static/images/list3.jpg" alt="about-code"/></a>
+                </div>
+                <div class="m-kind-info">
+                    <h2><a href="/articleList/niu-b">牛B网文</a></h2>
+                    <ul>
+                        <li>标签</li>
+                        <li>标签</li>
+                    </ul>
+                    <p>看见啥特牛B的东西就收在这里吧</p>
+                </div>
             </div>
         </div>
+        <% } %>
+        <% if(all == 'n'){ %>
         <div class="m-art-list">
             <% posts.forEach(function (post, index) { %>
-            <p><h2><a href="article/<%= post.name %>/<%= post.time.day %>/<%= post.title%>"><%= post.title %></a></h2></p>
+            <p><h2><a href="/article/<%= post.name %>/<%= post.time.day %>/<%= post.title%>"><%= post.title %></a></h2></p>
             <p class="info">
                 作者：<%= post.name %> |
                 日期：<%= post.time.day %>
@@ -28,6 +59,7 @@
             <p><%- post.post %></p>
         <% }) %>
         </div>
+        <% } %>
     </div>
 </div>
 <%- include footer %>
