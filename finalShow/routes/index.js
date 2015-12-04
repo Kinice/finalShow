@@ -9,7 +9,7 @@ module.exports = function(app) {
                 posts = [];
             }
             res.render('index', {
-                title: 'Kinice的个人博客',
+                title: '主页-Kinice的个人博客',
                 user: req.session.user,
                 posts: posts,
                 success: req.flash('success').toString(),
@@ -21,7 +21,7 @@ module.exports = function(app) {
     app.get('/reg', checkNotLogin);
     app.get('/reg', function (req, res) {
         res.render('reg', {
-            title: 'Kinice的个人博客',
+            title: '注册-Kinice的个人博客',
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
@@ -72,7 +72,7 @@ module.exports = function(app) {
     app.get('/login', checkNotLogin);
     app.get('/login', function (req, res) {
         res.render('login', {
-            title: 'Kinice的个人博客',
+            title: '登录-Kinice的个人博客',
             user:req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
@@ -103,7 +103,7 @@ module.exports = function(app) {
     app.get('/post', checkLogin);
     app.get('/post', function (req, res) {
         res.render('post', {
-            title: 'Kinice的个人博客',
+            title: '发表-Kinice的个人博客',
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
@@ -132,7 +132,7 @@ module.exports = function(app) {
     //about
     app.get('/about', function (req, res) {
         res.render('about', {
-            title: 'Kinice的个人博客',
+            title: 'Kinice本人-Kinice的个人博客',
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
@@ -145,7 +145,7 @@ module.exports = function(app) {
                 posts = [];
             }
             res.render('articleList', {
-                title: 'Kinice的个人博客',
+                title: '文章列表-Kinice的个人博客',
                 user: req.session.user,
                 posts: posts,
                 all: 'y',
@@ -156,13 +156,21 @@ module.exports = function(app) {
     });
     app.get('/articleList/:tag', function (req, res) {
         Post.getArticlesByTag(req.params.tag, function(err, posts){
+            var ttl;
             if(err){
                 posts=[];
                 req.flash('error', err);
                 return res.redirect('/');
             }
+            if(req.params.tag == 'about-code'){
+                ttl = '工作日常';
+            }else if(req.params.tag == 'brain-hole'){
+                ttl = '脑洞钻孔';
+            }else if(req.params.tag == 'niu-b'){
+                ttl = '牛B网文';
+            }
             res.render('articleList', {
-                title: 'Kinice的个人博客',
+                title: ttl + '-Kinice的博客',
                 posts: posts,
                 user: req.session.user,
                 all: 'n',
@@ -179,7 +187,7 @@ module.exports = function(app) {
                 return res.redirect('/');
             }
             res.render('article', {
-                title: 'Kinice的个人博客',
+                title: req.params.title + '-Kinice的博客',
                 articleTitle: req.params.title,
                 post: post,
                 user: req.session.user,
@@ -188,7 +196,15 @@ module.exports = function(app) {
             });
         });
     });
-
+    //videos
+    app.get('/videos', function(req, res){
+        res.render('videos',{
+            title: '自导视频-Kinice的博客',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    });
     function checkLogin(req, res, next) {
         if (!req.session.user) {
             req.flash('error', '未登录!');
