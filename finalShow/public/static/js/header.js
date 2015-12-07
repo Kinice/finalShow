@@ -61,14 +61,14 @@ $(function(){
         if($hd.css('position')=='absolute'){
             dispFixed($hd);
             $pin.css({
-                'transform':'rotate(-90deg)',
-                'color':'#fff'
+                'transform':'rotate(0deg)',
+                'color':'#f26651'
             });
         }else{
             dispAbsolute($hd);
             $pin.css({
-                'transform':'rotate(0deg)',
-                'color':'#f26651'
+                'transform':'rotate(-90deg)',
+                'color':'#fff'
             });
         }
     });

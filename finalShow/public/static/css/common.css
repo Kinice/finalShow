@@ -120,13 +120,13 @@
     right: 14px;
     z-index: 999991;
     cursor:pointer;
-    color: #fff;
+    color: #f26651;
     font-size: 18px;
-    transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);       /* IE 9 */
-    -webkit-transform: rotate(-90deg);   /* Safari and Chrome */
-    -o-transform: rotate(-90deg);        /* Opera */
-    -moz-transform: rotate(-90deg);
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);       /* IE 9 */
+    -webkit-transform: rotate(0deg);   /* Safari and Chrome */
+    -o-transform: rotate(0deg);        /* Opera */
+    -moz-transform: rotate(0deg);
     transition: transform 0.2s;
     -moz-transition: transform 0.2s;
     /* Firefox 4 */
