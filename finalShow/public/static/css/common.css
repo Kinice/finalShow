@@ -154,7 +154,7 @@
     border-bottom: 2px inset #50c5c3;
     color: #50c5c3;
 }
-*/
+
 .input-li {
     width: 222px;
     height: 45px;
@@ -162,7 +162,7 @@
     letter-spacing: 0;
     padding-left: 5px;
 }
-
+/*
 .m-nav input[type='text'] {
     display: inline-block;
     outline: none;
@@ -175,9 +175,7 @@
     background-color: #555;
     transition: all 0.5s;
     -moz-transition: all 0.5s;
-    /* Firefox 4 */
     -webkit-transition: all 0.5s;
-    /* Safari and Chrome */
     -o-transition: all 0.5s;
 }
 /*
@@ -198,6 +196,7 @@
     -o-transition: background-color 0.5s;
 }
 */
+/*
 .m-nav input[type='text']:focus {
     background-color: #fff;
 }
@@ -206,7 +205,8 @@
     background-color: #fff;
     background-position: 0 -40px;
 }
-
+*/
+/*
 .nav-inside {
     position: relative;
     z-index: 10001;
@@ -245,7 +245,7 @@
     text-decoration: none;
 
 }
-
+*/
 
 /* bu yao de part*/
 
