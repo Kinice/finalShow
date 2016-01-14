@@ -27,7 +27,7 @@ $(function(){
     $('.pin').click(function() {
         /* Act on the event */
         var $pin = $(this);
-        var $hd = $('.g-hd');
+        var $hd = $('header');
         if($hd.css('position')=='absolute'){
             dispFixed($hd);
             $pin.css({

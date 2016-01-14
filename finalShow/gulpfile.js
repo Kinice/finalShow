@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 
 
 gulp.task('less', function(){
-    gulp.src('/public/less/*.less')
+    gulp.src('public/less/*.less')
         .pipe(less())
         .pipe(minifycss())
         .pipe(gulp.dest('public/static/css'))

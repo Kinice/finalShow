@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="/static/css/basic.css" />
     <link rel="stylesheet" href="/static/fonts/iconfont.css"/>
     <link rel="stylesheet" href="/static/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/commonNew.css"/>
     <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
 </head>
 <body>
-<header class="g-hd">
+<header>
     <div class="m-logo">
         <h1>Kinice的个人博客</h1>
         <i class="iconfont mobile-icon home">&#xe609;</i>
@@ -23,13 +24,20 @@
                 </div>
         </div>
     </div>
-        <nav class="m-nav">
+        <div class="iconfont pin">&#xe60f;</div>
+        <div class="m-input">
+            <form action="#">
+                <input type="text" placeholder="search"/>
+                <input type="button"/>
+            </form>
+        </div>
+        <nav>
             <ul>
                 <li><a href="/">主页</a></li>
                 <li class="nav-inside">
                     <a href="/about">关于我</a>
                     <ul>
-                        <li><a href="https://github.com/Kinice/" class="iconfont" target="_blank">&#xe600; GitHub</a></li>
+                        <li><a href="https://github.com/Kinice/" class="iconfont" target="_blank">&#xe600;</a></li>
                     </ul>  
                 </li>
                 <li class="nav-inside">
@@ -42,13 +50,8 @@
                     </ul>
                 </li>
                 <li><a href="/message">留言</a></li>
-                <li class="input-li">
-                    <input  type="text" placeholder="search">
-                    <input type="button">
-                </li>
             </ul>
         </nav>
-        <i class="iconfont pin">&#xe60f;</i>
     </header>
 </div>
 <%- include loginStatus.ejs %>
