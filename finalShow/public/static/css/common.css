@@ -247,7 +247,7 @@
 }
 */
 
-/* bu yao de part*/
+/* bu yao de part
 
 .u-user {
     float: left;
@@ -264,9 +264,9 @@
     float: left;
     padding-right: 20px;
 }
+*/
 
-
-/*Index Part!!!!*/
+/*Index Part!!!!
 
 .g-top-info {
     width: 100%;
@@ -301,7 +301,6 @@
     left: 15%;
     padding: 30px;
 }
-
 .m-myinfo h1 {
     font-size: 36px;
     padding-bottom: 20px;
@@ -372,8 +371,7 @@
     text-align: right;
 }
 /* article list part */
-    /* article list all */
-    .m-kind-list{}
+    /* article list all
     .m-kind{
         width: 90%;
         height: 220px;
@@ -391,6 +389,7 @@
     .m-kind:hover{
         border-color: #f26651;
     }
+
     .m-kind-img{
        height: 100%;
         width: auto;
@@ -433,7 +432,7 @@
         margin: 10px;
         color: #fff;
     }
-    /* article list and video list part*/
+    /* article list and video list part
     .m-art-list{
         width: 290px;
         height: 360px;
@@ -473,6 +472,7 @@
         margin: 4px;
         color: #fff;
     }
+
     .user-info{
         padding:3px 5px;
     }
@@ -481,7 +481,7 @@
         width: 24px;
         height: 24px;
     }
-/* article detail part */
+/* article detail part
 
 .g-middle {
     width: 650px;
