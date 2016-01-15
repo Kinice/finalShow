@@ -186,6 +186,7 @@ module.exports = function(app) {
                 req.flash('error', err);
                 return res.redirect('/');
             }
+            console.log(post.post);
             res.render('article', {
                 title: req.params.title + '-Kinice的博客',
                 articleTitle: req.params.title,
