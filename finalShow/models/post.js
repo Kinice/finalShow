@@ -80,7 +80,7 @@ Post.getAllArticles = function(name, callback){
 				}
                 //Mark down
                 docs.forEach(function(doc){
-                    doc.post = markdown.toHTML(doc.post);
+                    doc.post = extract(markdown.toHTML(doc.post));
                 });
 
 				callback(null, docs);
@@ -151,3 +151,22 @@ Post.getArticlesByTag = function(tag, callback){
         });
     });
 };
+//extract string from html tags
+function extract(s){
+    var fin = [];
+    var s;
+    var bool=false;
+    for(var i = 0; i<s.length; i++){
+        var a = s.substr(i,1);
+        if(a === '>'){bool = false;continue;}
+        if(a === '<'){
+            bool = true;
+        }else if(bool ===true){
+            continue;
+        }else if(bool === false){
+            fin.push(a);
+        }
+    }
+    s = fin.join('');
+    return s;
+}
