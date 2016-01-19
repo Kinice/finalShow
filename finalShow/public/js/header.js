@@ -12,11 +12,11 @@ $(function(){
         backOne();
     });
     $(document).scroll(function(){
-        if(getScrollTop() <= 200){
-            $('.back-to-top').fadeOut();
-        }else if(getScrollTop() >= 200){
+        if(getScrollTop() <= 600){
+            $('.back-to-top').stop().fadeOut();
+        }else if(getScrollTop() >= 600){
             //Back To Top
-            $('.back-to-top').fadeIn();
+            $('.back-to-top').stop().fadeIn();
         }
     });
     $('.back-to-top').click(function(){

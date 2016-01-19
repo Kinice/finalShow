@@ -34,7 +34,7 @@
     height: 58px;
     line-height: 58px;
 }
-*/
+
 .mobile-icon {
     font-size: 24px;
     color: #fff;
@@ -66,7 +66,7 @@
     border-radius: 4px;
     display: none;
 }
-
+/*
 .mobile-menu:after {
     content: "";
     border-style: solid;
@@ -100,16 +100,14 @@
     background-repeat: no-repeat;
     transition: all 0.5s;
     -moz-transition: all 0.5s;
-    /* Firefox 4 */
     -webkit-transition: all 0.5s;
-    /* Safari and Chrome */
     -o-transition: all 0.5s;
 }
 
 .mobile-search input[type='text']:focus {
     background-color: #ececee;
 }
-/*
+
 .pin{
     display: block;
     position:absolute;
@@ -128,7 +126,7 @@
     -moz-transition: transform 0.2s;
     -webkit-transition: transform 0.2s;
     -o-transition: transform 0.2s;
-}
+}*/
 /*NAV PART
 
 .m-nav {
@@ -311,7 +309,7 @@
 }
 
 
-/*REG AND LOGIN PART!!!!!!*/
+/*REG AND LOGIN PART!!!!!!
 
 .g-inner-logreg {
     width: 350px;
@@ -358,7 +356,7 @@
     box-shadow: 0 0 0 8px #e1ecf5;
 }
 
-/*post part !!!!*/
+post part !!!!
 
 .g-inner-post{
     width: 70%;
@@ -518,7 +516,7 @@
 }
 /* Videos part */
 
-/* Other Part */
+/* Other Part
 
 .back-to-top {
     cursor: pointer;
@@ -541,14 +539,14 @@
     -o-transition: background-color 0.15s;
     transition: background-color 0.15s;
 }
-
 .back-to-top:hover {
     background-color: #bbb;
 }
 
-/* responsible part */
+responsible part
 
 @media screen and (max-width: 800px) {
+    /*
     .m-logo {
         width: 100%;
         position: static;
@@ -587,9 +585,6 @@
     .g-inner {
         width: 95%;
         padding-top: 0;
-    }
-    .g-middle {
-        width: 100%;
     }
     .g-aside {
         float: none;
@@ -633,3 +628,4 @@
         padding-left: 5px;
     }
 }
+*/

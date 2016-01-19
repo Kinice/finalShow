@@ -1,5 +1,4 @@
 var mongodb = require('./db');
-var markdown = require('markdown').markdown;
 var marked = require('marked');
 
 marked.setOptions({

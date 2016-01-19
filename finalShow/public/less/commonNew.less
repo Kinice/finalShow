@@ -10,8 +10,26 @@
 @headSearchheight:32px;
 @hPadding:(@headHeight - @headSearchheight) / 2;
 @mainPartWidth:1000px;
+@b2tLen:40px;
+@mobileIcon:24px;
 //clearFloat
 //some art
+.search{
+  padding:0 5px;
+  font-size: 18px;
+  height: @headSearchheight;
+  background-color: @searchBgColor;
+}
+.transition-all{
+  transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+.block{
+  background-color: #fff;
+  margin-bottom: 10px;
+}
 .boxshadow{
   box-shadow: 0px 0px 0px #FFF;
   background-color: #FFFFFF;
@@ -22,6 +40,13 @@
   &:hover{
     box-shadow: 2px 2px 8px #aaa;
   }
+}
+.mobile-icon{
+  font-size: @mobileIcon;
+  color: #fff;
+  display: none;
+  height: @mobileIcon;
+  width: @mobileIcon;
 }
 //header part
 header{
@@ -41,6 +66,50 @@ header{
       font-size: 20px;
       height: @headHeight;
       line-height: @headHeight;
+    }
+    .home{
+      position: absolute;
+      top: 0;
+      left: 0;
+      .mobile-icon;
+    }
+    .menu{
+      position: absolute;
+      top: 0;
+      right: 0;
+      .mobile-icon;
+    }
+  }
+  .mobile-menu{
+    width: 90%;
+    padding: 10px 0;
+    background: #acd0ce;
+    position: absolute;
+    top: @headHeight - 2;
+    right: 5%;
+    z-index: 102;
+    border-radius: 2px;
+    display: none;
+    form{
+      padding: 0;
+      width: 95%;
+      margin: 0 auto;
+      input[type='text']{
+        box-sizing: border-box;
+        display: inline-block;
+        border:0;
+        width: 100%;
+        margin: 0 auto;
+        background-image: url('../images/search2.png');
+        background-position: 98%;
+        background-size: @headSearchheight - 10 @headSearchheight - 10;
+        background-repeat: no-repeat;
+        &:focus{
+          background-color: #fff;
+        }
+        .transition-all;
+        .search;
+      }
     }
   }
 }
@@ -70,10 +139,7 @@ nav{
       position: absolute;
       width: 100%;
       opacity: 0;
-      transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      -webkit-transition: all 0.3s;
-      -o-transition: all 0.3s;
+      .transition-all;
       &>li a{
         text-align: center;
         display: block;
@@ -94,22 +160,17 @@ nav{
   float: right;
   height: @headHeight;
   padding: @hPadding 10px;
+  box-sizing: border-box;
   input[type="text"]{
     float: left;
     border: none;
-    height: @headSearchheight;
     width: 180px;
-    font-size: 18px;
-    padding:0 5px;
-    background-color: @searchBgColor;
-    transition: background-color 0.5s;
-    -moz-transition: background-color 0.5s;
-    -webkit-transition: background-color 0.5s;
-    -o-transition: background-color 0.5s;
+    .transition-all;
     &:focus,&:focus + input[type="button"]{
       background-color: #fff;
       background-position: 0 -40px;
     }
+    .search
   }
   input[type="button"]{
     float: left;
@@ -119,30 +180,8 @@ nav{
     width: @headSearchheight;
     height: @headSearchheight;
     background: url('../images/gsearch-sprite.png') @searchBgColor 0 0;
-    transition: background-color 0.5s;
-    -moz-transition: background-color 0.5s;
-    -webkit-transition: background-color 0.5s;
-    -o-transition: background-color 0.5s;
+    .transition-all;
   }
-}
-.pin{
-  float: right;
-  z-index: 101;
-  cursor:pointer;
-  color: @orangeColor;
-  font-size: 18px;
-  height: @headHeight;
-  line-height: @headHeight;
-  padding: 0 15px;
-  transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  -webkit-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  transition: transform 0.2s;
-  -moz-transition: transform 0.2s;
-  -webkit-transition: transform 0.2s;
-  -o-transition: transform 0.2s;
 }
 //background part
 .g-bd{
@@ -158,16 +197,19 @@ nav{
       box-sizing: border-box;
       display: inline-block;
       width: 700px;
-      background-color: #FFF;
       vertical-align: top;
+      .block
     }
     .g-aside{
       display: inline-block;
       margin:0 0 20px 10px;
-      width: 270px;
-      height: 200px;
-      background-color: #FFF;
       vertical-align: top;
+      width: 270px;
+      .aside-block{
+        height: 200px;
+        width: 100%;
+        .block
+      }
     }
     .m-kind{
       width: 90%;
@@ -297,5 +339,189 @@ nav{
         font-size: 16px;
       }
     }
+  }
+  .m-form{
+    width: 350px;
+    margin: 0 auto;
+    padding: 60px 0 50px 0;
+    input{
+      width: 200px;
+      height: 25px;
+      margin-top: 20px;
+      right: 0px;
+      display: inline-block;
+      -webkit-box-shadow: 0 0 0 8px #eef7f9;
+      box-shadow: 0 0 0 8px #eef7f9;
+      border: 1px solid #cfdfe3;
+      outline: 0;
+      padding: 0 6px;
+      &:focus{
+        border-color: #93c2ec;
+        -webkit-box-shadow: 0 0 0 8px #e1ecf5;
+        box-shadow: 0 0 0 8px #e1ecf5;
+      }
+    }
+    label{
+      display: inline-block;
+      width: 100px;
+      height: 29px;
+      margin: 20px 5px 0 0;
+      text-align: right;
+    }
+    .button{
+      display: block;
+      margin: 60px auto;
+      background-color: #deeef4;
+      color: #4d5a5e;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 10px;
+      outline: none;
+      height: 30px;
+    }
+  }
+  .m-post{
+    width: 70%;
+    margin: 0 auto;
+    label{
+      width: 100px;
+      line-height: 50px;
+      text-align: right;
+      vertical-align: top;
+    }
+    input,select,textarea{
+      padding: 2px 5px;
+      margin-top: 12px;
+    }
+  }
+}
+//u part
+.pin{
+  float: right;
+  z-index: 101;
+  cursor:pointer;
+  color: @orangeColor;
+  font-size: 18px;
+  height: @headHeight;
+  line-height: @headHeight;
+  padding: 0 15px;
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  transition: transform 0.2s;
+  -moz-transition: transform 0.2s;
+  -webkit-transition: transform 0.2s;
+  -o-transition: transform 0.2s;
+}
+.back-to-top {
+  cursor: pointer;
+  display: none;
+  height: @b2tLen;
+  width: @b2tLen;
+  color: #000;
+  background-color: rgba(210,210,210,0.5);
+  font-size: @b2tLen - 15px;
+  line-height: @b2tLen;
+  text-align: center;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 130px;
+  right: 100px;
+  -webkit-transition: background-color 0.15s;
+  -moz-transition: background-color 0.15s;
+  -ms-transition: background-color 0.15s;
+  -o-transition: background-color 0.15s;
+  transition: background-color 0.15s;
+  &:hover{
+    background-color: #d2d2d2;
+  }
+}
+//@media part
+@media screen and (max-width: 960px) {
+  .g-bd .g-inner{
+    width: 95%;
+    .g-aside {
+      float: none;
+      width: 100%;
+      text-align: center;
+      margin: 10px 0;
+    }
+    .k-article{
+      width: 100%;
+    }
+  }
+}
+@media screen and (max-width: 800px){
+  header{
+    position: absolute;
+    .m-logo{
+      width: 100%;
+      position: static;
+      h1{
+        text-align: center;
+      }
+      .mobile-icon {
+        padding-top: 15px;
+        padding-bottom: 5px;
+        cursor: pointer;
+        display: block;
+      }
+      .home {
+        padding-left: 20px;
+        padding-right: 5px;
+        .mobile-icon
+      }
+      .menu {
+        padding-right: 20px;
+        padding-left: 5px;
+        .mobile-icon
+      }
+    }
+  }
+  nav{
+    height: @headHeight;
+    width: 100%;
+    background-color: @headBgColor;
+    position: static;
+    text-align: center;
+    ul{
+      display: inline-block;
+    }
+  }
+  .g-bd{
+    margin-top:2 * @headHeight;
+    .g-top .m-info {
+      width: 100%;
+      white-space: nowrap;
+      width: auto;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      p{
+        text-align: center;
+      }
+    }
+  }
+  .m-input{
+    display: none;
+  }
+  .pin{
+    display: none;
+  }
+  .back-to-top {
+    width: 30px;
+    height: 30px;
+    background-color: rgba(210, 210, 210, 0.7);
+    font-size: 15px;
+    line-height: 30px;
+    bottom: 25px;
+    right: 25px;
+    border-radius: 4px;
   }
 }
