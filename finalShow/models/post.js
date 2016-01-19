@@ -1,5 +1,17 @@
 var mongodb = require('./db');
 var markdown = require('markdown').markdown;
+var marked = require('marked');
+
+marked.setOptions({
+    renderer: new marked.Renderer(),
+    gfm: true,
+    tables: true,
+    breaks: true,
+    pedantic: false,
+    sanitize: true,
+    smartLists: true,
+    smartypants: false
+});
 
 function Post(name, title , post ,tag){
 	this.name = name;
@@ -80,7 +92,7 @@ Post.getAllArticles = function(name, callback){
 				}
                 //Mark down
                 docs.forEach(function(doc){
-                    doc.post = extract(markdown.toHTML(doc.post));
+                    doc.post = extract(marked(doc.post));
                 });
 
 				callback(null, docs);
@@ -111,7 +123,7 @@ Post.getOneArticle = function(name,day,title,callback){
                   return callback(err);
               }
               //MARKDOWN
-              doc.post = markdown.toHTML(doc.post);
+              doc.post = marked(doc.post);
               callback(null, doc);
           });
       });
@@ -143,7 +155,7 @@ Post.getArticlesByTag = function(tag, callback){
                 }
                 //Mark down
                 docs.forEach(function(doc){
-                    doc.post = markdown.toHTML(doc.post);
+                    doc.post = marked(doc.post);
                 });
 
                 callback(null, docs);
@@ -154,7 +166,7 @@ Post.getArticlesByTag = function(tag, callback){
 //extract string from html tags
 function extract(s){
     var fin = [];
-    var s;
+    var string;
     var bool=false;
     for(var i = 0; i<s.length; i++){
         var a = s.substr(i,1);
@@ -167,6 +179,6 @@ function extract(s){
             fin.push(a);
         }
     }
-    s = fin.join('');
-    return s;
+    string = fin.join('');
+    return string;
 }
