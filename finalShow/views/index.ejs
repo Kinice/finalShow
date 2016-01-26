@@ -10,10 +10,12 @@
         </div>
         <div class="g-inner">
             <% posts.forEach(function (post, index) { %>
-              <p><h2><a href="article/<%= post.name %>/<%= post.time.day %>/<%= post.title%>"><%= post.title %></a></h2></p>
+            <div class="m-index">
+              <h2>
+                  <a href="article/<%= post.name %>/<%= post.time.day %>/<%= post.title%>"><%= post.title %></a>
+              </h2>
               <p class="info">
-                作者：<a href="#"><%= post.name %></a> | 
-                日期：<%= post.time.day %>
+                <a href="#"><%= post.name %></a> · <%= post.time.day %>
               </p>
               <p>
                 标签：<%= post.tag %>
@@ -23,6 +25,7 @@
               <%}else{%>
               <p><%- post.post %></p>
               <%}%>
+            </div>
             <% }) %>
         </div>
     </div>

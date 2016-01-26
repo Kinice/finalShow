@@ -8,7 +8,6 @@ module.exports = function(app) {
             if(err){
                 posts = [];
             }
-            console.log(posts);
             res.render('index', {
                 title: '主页-Kinice的个人博客',
                 user: req.session.user,
