@@ -18,7 +18,11 @@
               <p>
                 标签：<%= post.tag %>
               </p>
+              <% if(post.post.length>200){%>
+              <p><%- post.post.substr(0,200) + '...' %></p>
+              <%}else{%>
               <p><%- post.post %></p>
+              <%}%>
             <% }) %>
         </div>
     </div>
