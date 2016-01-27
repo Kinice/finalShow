@@ -11,19 +11,16 @@
         <div class="g-inner">
             <% posts.forEach(function (post, index) { %>
             <div class="m-index">
-              <h2>
-                  <a href="article/<%= post.name %>/<%= post.time.day %>/<%= post.title%>"><%= post.title %></a>
+              <h2>			  
+                  <a href="article/<%= post.name %>/<%= post.title%>"><%= post.title %></a>
               </h2>
               <p class="info">
-                <a href="#"><%= post.name %></a> · <%= post.time.day %>
-              </p>
-              <p>
-                标签：<%= post.tag %>
+                <a href="#"><%= post.name %></a> · <%= post.time.day %> · 分类：<a href="#"><%= post.tag %></a>
               </p>
               <% if(post.post.length>200){%>
-              <p><%- post.post.substr(0,200) + '...' %></p>
+              <p class="pre"><%- post.post.substr(0,200) + '...' %></p>
               <%}else{%>
-              <p><%- post.post %></p>
+              <p class="pre"><%- post.post %></p>
               <%}%>
             </div>
             <% }) %>

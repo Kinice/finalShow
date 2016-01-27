@@ -198,8 +198,18 @@ nav{
       padding: 20px;
       margin-bottom: 15px;
       h2{
+		width:100%;
         font-size: 30px;
         padding-bottom:15px;
+		position:relative;
+		&:before{
+			content:'';
+			height:37px;
+			width:8px;
+			position:absolute;
+			left:-20px - 5px;
+			background-color:@headHoverColor;
+		}
       }
       p.info{
         a{
@@ -211,6 +221,11 @@ nav{
         font-size: 15px;
         color: #aaa;
       }
+	  p.pre{
+		  font-size: 16.5px;
+		  padding-top:10px;
+	  }
+	  .boxshadow;
     }
     .k-article{
       box-sizing: border-box;

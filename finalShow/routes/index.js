@@ -8,6 +8,9 @@ module.exports = function(app) {
             if(err){
                 posts = [];
             }
+			for(var i = 0; i<posts.length; i++){
+				posts[i].tag = Post.getTag(posts[i].tag);
+			}
             res.render('index', {
                 title: '主页-Kinice的个人博客',
                 user: req.session.user,
@@ -180,8 +183,8 @@ module.exports = function(app) {
         });
     });
     //article
-    app.get('/article/:name/:day/:title', function (req, res) {
-        Post.getOneArticle(req.params.name, req.params.day, req.params.title, function(err, post){
+    app.get('/article/:name/:title', function (req, res) {
+        Post.getOneArticle(req.params.name, req.params.title, function(err, post){
             if(err){
                 req.flash('error', err);
                 return res.redirect('/');

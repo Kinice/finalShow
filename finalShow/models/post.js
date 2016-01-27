@@ -99,7 +99,7 @@ Post.getAllArticles = function(name, callback){
 		});
 	});
 };
-Post.getOneArticle = function(name,day,title,callback){
+Post.getOneArticle = function(name,title,callback){
   //Open Database
   mongodb.open(function(err, db){
       if(err){
@@ -114,7 +114,6 @@ Post.getOneArticle = function(name,day,title,callback){
           //Find Article by Name,day and title
           collection.findOne({
               'name': name,
-              'time.day': day,
               'title': title
           },function(err, doc){
               mongodb.close();
@@ -162,6 +161,20 @@ Post.getArticlesByTag = function(tag, callback){
         });
     });
 };
+//extract tags into chinese
+Post.getTag=function(tag){
+	var s;
+	if(tag == 'about-code'){
+		s='工作日常'; 
+	}else if(tag == 'brain-hole'){
+		s='脑洞钻孔';
+	}else if(tag == 'niu-b'){
+		s='牛B网文';
+	}else{
+		s='自导视频';
+	}
+	return s;
+}
 //extract string from html tags
 function extract(s){
     var fin = [];
