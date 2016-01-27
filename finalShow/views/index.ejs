@@ -17,8 +17,8 @@
               <p class="info">
                 <a href="#"><%= post.name %></a> · <%= post.time.day %> · 分类：<a href="#"><%= post.tag %></a>
               </p>
-              <% if(post.post.length>200){%>
-              <p class="pre"><%- post.post.substr(0,200) + '...' %></p>
+              <% if(post.post.length>160){%>
+              <p class="pre"><%- post.post.substr(0,160) + '...' %></p>
               <%}else{%>
               <p class="pre"><%- post.post %></p>
               <%}%>
