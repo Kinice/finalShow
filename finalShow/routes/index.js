@@ -183,13 +183,12 @@ module.exports = function(app) {
         });
     });
     //article
-    app.get('/article/:name/:title', function (req, res) {
-        Post.getOneArticle(req.params.name, req.params.title, function(err, post){
+    app.get('/article/:_id', function (req, res) {
+        Post.getOneArticle(req.params._id, function(err, post){
             if(err){
                 req.flash('error', err);
                 return res.redirect('/');
             }
-            console.log(post.post);
             res.render('article', {
                 title: req.params.title + '-Kinice的博客',
                 articleTitle: req.params.title,

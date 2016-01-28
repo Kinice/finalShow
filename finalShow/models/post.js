@@ -1,5 +1,6 @@
 var mongodb = require('./db');
 var marked = require('marked');
+var ObjectID = require('mongodb').ObjectID;
 
 marked.setOptions({
     renderer: new marked.Renderer(),
@@ -99,7 +100,7 @@ Post.getAllArticles = function(name, callback){
 		});
 	});
 };
-Post.getOneArticle = function(name,title,callback){
+Post.getOneArticle = function(_id,callback){
   //Open Database
   mongodb.open(function(err, db){
       if(err){
@@ -111,10 +112,9 @@ Post.getOneArticle = function(name,title,callback){
               mongodb.close();
               return callback(err);
           }
-          //Find Article by Name,day and title
+          //Find Article by id
           collection.findOne({
-              'name': name,
-              'title': title
+              '_id': new ObjectID(_id)
           },function(err, doc){
               mongodb.close();
               if(err){
