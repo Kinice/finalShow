@@ -190,7 +190,7 @@ module.exports = function(app) {
                 return res.redirect('/');
             }
             res.render('article', {
-                title: req.params.title + '-Kinice的博客',
+                title: post.title + '-Kinice的博客',
                 articleTitle: req.params.title,
                 post: post,
                 user: req.session.user,
