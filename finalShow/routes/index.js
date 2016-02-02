@@ -134,7 +134,7 @@ module.exports = function(app) {
     });
     //about
     app.get('/about', function (req, res) {
-        res.render('about', {
+        res.render('aboutme', {
             title: 'Kinice本人-Kinice的个人博客',
             user: req.session.user,
             success: req.flash('success').toString(),
