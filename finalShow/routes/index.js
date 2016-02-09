@@ -199,13 +199,13 @@ module.exports = function(app) {
             });
         });
     });
-    //videos
-    app.get('/videos', function(req, res){
-        res.render('videos',{
-            title: '自导视频-Kinice的博客',
-            user: req.session.user,
-            success: req.flash('success').toString(),
-            error: req.flash('error').toString()
+    //message
+    app.get('/message', function (req, res) {
+        res.render('message',{
+            title: post.title + '-Kinice的博客',
+	    user: req.session.user,
+	    success: req.flash('success').toString(),
+	    error: req.flash('error').toString()
         });
     });
     function checkLogin(req, res, next) {
