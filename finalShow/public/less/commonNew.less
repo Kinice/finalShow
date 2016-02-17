@@ -5,8 +5,10 @@
 @mobileMenuBgColor:#acd0ce;
 @searchBgColor:#555;
 @orangeColor:#f26651;
+@githubColor:#569e3d;
 //length
 @headHeight:58px;
+@footHeight:50px;
 @headSearchheight:32px;
 @hPadding:(@headHeight - @headSearchheight) / 2;
 @mainPartWidth:1000px;
@@ -184,9 +186,18 @@ nav{
   }
 }
 //background part
+.all{
+  &:after{
+    content: "";
+    display: block;
+    height: @footHeight;
+  }
+  padding-top: 0.1px;
+  min-height: 100%;
+  margin-bottom: -@footHeight;
+}
 .g-bd{
   width:100%;
-  height: 100%;
   margin-top: @headHeight;
   .g-inner{
     width:@mainPartWidth;
@@ -448,6 +459,19 @@ nav{
       padding: 2px 5px;
       margin-top: 12px;
     }
+  }
+}
+footer.g-ft{
+  height: @footHeight;
+  width: 100%;
+  background-color: @headBgColor;
+  color: #fff;
+  line-height: @footHeight;
+  text-align: center;
+  font-family: '微软雅黑','microsoft yahei',sans-serif,Arial;
+  a{
+    font-size: 20px;
+    color: @githubColor;
   }
 }
 //u part
