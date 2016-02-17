@@ -12,6 +12,7 @@
 @headSearchheight:32px;
 @hPadding:(@headHeight - @headSearchheight) / 2;
 @mainPartWidth:1000px;
+@innerWidth:720px;
 @b2tLen:40px;
 @mobileIcon:24px;
 //clearFloat
@@ -458,6 +459,52 @@ nav{
     input,select,textarea{
       padding: 2px 5px;
       margin-top: 12px;
+    }
+  }
+}
+.message-inner{
+  width: 720px;
+  margin: 68px auto 20px;
+  padding: 1px 6px;
+  background-color: #ddd;
+  .talkbox{
+    width: 95%;
+    margin: 10px auto;
+    background-color: #fff;
+    padding: 10px 15px;
+    zoom: 1;
+    .boxshadow;
+    h2{
+      font-size: 18px;
+    }
+    .content-form{
+      display: block;
+      width: 100%;
+      padding: 5px 0;
+      p{
+        line-height: 1.5;
+      }
+      textarea{
+        border-width: 1px;
+        width: 98%;
+        height: 68px;
+        resize: none;
+        padding: 4px 5px;
+        margin-bottom: 5px;
+        &:focus{
+          border-color: @orangeColor;
+        }
+      }
+      input[type='button']{
+        float: right;
+        background-color: @orangeColor;
+        border: none;
+        width: 50px;
+        height: 26px;
+        margin-right: 3px;
+        color: #fff;
+        cursor: pointer;
+      }
     }
   }
 }
