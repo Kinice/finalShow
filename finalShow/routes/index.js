@@ -202,7 +202,7 @@ module.exports = function(app) {
     //message
     app.get('/message', function (req, res) {
         res.render('message',{
-            title: post.title + '-Kinice的博客',
+            title: '留言-Kinice的博客',
 	    user: req.session.user,
 	    success: req.flash('success').toString(),
 	    error: req.flash('error').toString()
