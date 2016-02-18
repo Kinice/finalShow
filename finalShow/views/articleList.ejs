@@ -47,7 +47,7 @@
         <% posts.forEach(function (post, index) { %>
         <div class="m-index">
             <h2>
-                <a href="article/<%= post._id %>"><%= post.title %></a>
+                <a href="/article/<%= post._id %>"><%= post.title %></a>
             </h2>
             <p class="info">
                 <%= post.name %> · <%= post.time.day %> · 分类：<a href="#"><%= post.tag %></a>
