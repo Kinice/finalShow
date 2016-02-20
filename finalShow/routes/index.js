@@ -173,6 +173,7 @@ module.exports = function(app) {
                 ttl = '牛B网文';
             }
             res.render('articleList', {
+                tag: ttl || null,
                 title: ttl + '-Kinice的博客',
                 posts: posts,
                 user: req.session.user,

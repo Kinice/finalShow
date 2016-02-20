@@ -1,4 +1,19 @@
 $(function(){
+    var $pin = $('.pin');
+    var $hd = $('header');
+    if(sessionStorage.pin == 'fixed'){
+        dispFixed($hd);
+        $pin.css({
+            'transform':'rotate(0deg)',
+            'color':'#f26651'
+        });
+    }else{
+        dispAbsolute($hd);
+        $pin.css({
+            'transform':'rotate(-90deg)',
+            'color':'#fff'
+        });
+    }
 	$('.menu').click(function() {
 		/* Act on the event */
         var randNum = Math.random();
@@ -26,8 +41,6 @@ $(function(){
     });
     $('.pin').click(function() {
         /* Act on the event */
-        var $pin = $(this);
-        var $hd = $('header');
         if($hd.css('position')=='absolute'){
             dispFixed($hd);
             $pin.css({
@@ -64,8 +77,10 @@ function backOne(){
     window.history.go(-1);
 }
 function dispAbsolute(element){
+    sessionStorage.pin = 'absolute';
     element.css('position','absolute');
 }
 function dispFixed(element){
+    sessionStorage.pin = 'fixed';
     element.css('position','fixed');
 }

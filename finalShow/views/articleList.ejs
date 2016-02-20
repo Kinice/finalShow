@@ -44,19 +44,21 @@
             </div>
         <% } %>
         <% if(all == 'n'){ %>
-        <div class="m-art-list">
-            <% posts.forEach(function (post, index) { %>
-            <p><h2><a href="/article/<%= post.name %>/<%= post.time.day %>/<%= post.title%>"><%= post.title %></a></h2></p>
+        <% posts.forEach(function (post, index) { %>
+        <div class="m-index">
+            <h2>
+                <a href="/article/<%= post._id %>"><%= post.title %></a>
+            </h2>
             <p class="info">
-                作者：<%= post.name %> |
-                日期：<%= post.time.day %>
+                <%= post.name %> · <%= post.time.day %> · 分类：<a href="#"><%= post.tag %></a>
             </p>
-            <p>
-                标签：<%= post.tag %>
-            </p>
-            <p><%- post.post %></p>
-        <% }) %>
+            <% if(post.post.length>100){%>
+            <p class="pre"><%- post.post.substr(0,100) + '...' %></p>
+            <%}else{%>
+            <p class="pre"><%- post.post %></p>
+            <%}%>
         </div>
+        <% }) %>
         <% } %>
     </div>
 </div>

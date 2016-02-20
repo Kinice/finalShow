@@ -153,7 +153,7 @@ Post.getArticlesByTag = function(tag, callback){
                 }
                 //Mark down
                 docs.forEach(function(doc){
-                    doc.post = marked(doc.post);
+                    doc.post = extract(marked(doc.post));
                 });
 
                 callback(null, docs);
