@@ -1,15 +1,25 @@
 <%- include header %>
 <!-- post part -->
 <div class="g-bd">
-    <ul class="archive">
-        <% var lastYear = 0 %>
+    <div class="g-inner">
+        <div class="search-tips">
+            SEARCH： <span><%= query %></span>
+        </div>
         <% posts.forEach(function (post, index) { %>
-        <% if(lastYear != post.time.year) { %>
-        <li><h3><%= post.time.year %></h3></li>
-        <% lastYear = post.time.year } %>
-        <li><time><%= post.time.day %></time></li>
-        <li><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></li>
+        <div class="m-index">
+            <h2>
+                <a href="article/<%= post._id %>"><%= post.title %></a>
+            </h2>
+            <p class="info">
+                <%= post.name %> · <%= post.time.day %> · 分类：<a href="#"><%= post.tag %></a>
+            </p>
+            <% if(post.post.length>160){%>
+            <p class="pre"><%- post.post.substr(0,160) + '...' %></p>
+            <%}else{%>
+            <p class="pre"><%- post.post %></p>
+            <%}%>
+        </div>
         <% }) %>
-    </ul>
+    </div>
 </div>
 <%- include footer %>

@@ -203,7 +203,7 @@ module.exports = function(app) {
     //message
     app.get('/message', function (req, res) {
         res.render('message',{
-            title: '留言-Kinice的博客',
+        title: '留言-Kinice的博客',
 	    user: req.session.user,
 	    success: req.flash('success').toString(),
 	    error: req.flash('error').toString()
@@ -217,7 +217,8 @@ module.exports = function(app) {
                 return res.redirect('/');
             }
             res.render('search',{
-                title: 'search: ' + req.query.keyword,
+                query: req.query.keyword,
+                title: '搜索结果',
                 posts: posts,
                 user: req.session.user,
                 success: req.flash('success').toString(),
