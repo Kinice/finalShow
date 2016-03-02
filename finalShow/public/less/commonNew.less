@@ -170,13 +170,13 @@ nav{
     border: none;
     width: 180px;
     .transition-all;
-    &:focus,&:focus + input[type="button"]{
+    &:focus,&:focus + input[type="submit"]{
       background-color: #fff;
       background-position: 0 -40px;
     }
-    .search
+    .search;
   }
-  input[type="button"]{
+  input[type="submit"]{
     float: left;
     display: inline-block;
     cursor: pointer;
@@ -184,6 +184,10 @@ nav{
     width: @headSearchheight;
     height: @headSearchheight;
     background: url('../images/gsearch-sprite.png') @searchBgColor 0 0;
+    &:focus{
+      background-color: #fff;
+      background-position: 0 -40px;
+    }
     .transition-all;
   }
 }

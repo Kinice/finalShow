@@ -127,6 +127,36 @@ Post.getOneArticle = function(_id,callback){
       });
   });
 };
+//search mode
+Post.search = function(keyword, callback){
+    mongodb.open(function(err, db){
+        if(err){
+            return callback(err);
+        }
+        db.collection('posts',function(err,collection){
+            if (err) {
+                mongodb.close();
+                return callback(err);
+            }
+            var pattern = new RegExp(keyword, 'i');
+            collection.find({
+                "title": pattern
+            },{
+                "name": 1,
+                "time": 1,
+                "title": 1
+            }).sort({
+                time: -1
+            }).toArray(function(err, docs){
+                mongodb.close();
+                if(err){
+                    return callback(err);
+                }
+                callback(null, docs);
+            });
+        });
+    });
+}
 //read article and other informations
 Post.getArticlesByTag = function(tag, callback){
     //Open Database

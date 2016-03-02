@@ -159,18 +159,14 @@ module.exports = function(app) {
     });
     app.get('/articleList/:tag', function (req, res) {
         Post.getArticlesByTag(req.params.tag, function(err, posts){
-            var ttl;
             if(err){
                 posts=[];
                 req.flash('error', err);
                 return res.redirect('/');
             }
-            if(req.params.tag == 'about-code'){
-                ttl = '工作日常';
-            }else if(req.params.tag == 'brain-hole'){
-                ttl = '脑洞钻孔';
-            }else if(req.params.tag == 'niu-b'){
-                ttl = '牛B网文';
+            var ttl = Post.getTag(req.params.tag);
+            for(var i = 0; i<posts.length; i++){
+                posts[i].tag = Post.getTag(posts[i].tag);
             }
             res.render('articleList', {
                 tag: ttl || null,
@@ -200,6 +196,10 @@ module.exports = function(app) {
             });
         });
     });
+    //test
+    app.get('/test',function(req, res){
+        callback('hello');
+    });
     //message
     app.get('/message', function (req, res) {
         res.render('message',{
@@ -207,6 +207,22 @@ module.exports = function(app) {
 	    user: req.session.user,
 	    success: req.flash('success').toString(),
 	    error: req.flash('error').toString()
+        });
+    });
+    //search
+    app.get('/search', function(req, res){
+        Post.search(req.query.keyword,function(err,posts){
+            if(err){
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('search',{
+                title: 'search: ' + req.query.keyword,
+                posts: posts,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
         });
     });
     function checkLogin(req, res, next) {
