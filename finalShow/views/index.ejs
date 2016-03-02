@@ -15,7 +15,7 @@
                   <a href="article/<%= post._id %>"><%= post.title %></a>
               </h2>
               <p class="info">
-                <%= post.name %> · <%= post.time.day %> · 分类：<a href="#"><%= post.tag %></a>
+                <%= post.name %> · <%= post.time.day %> · 分类：<a href="/articleList/<%= post.tag %>"><%= post.tac %></a>
               </p>
               <% if(post.post.length>160){%>
               <p class="pre"><%- post.post.substr(0,160) + '...' %></p>

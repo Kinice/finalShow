@@ -9,7 +9,7 @@ module.exports = function(app) {
                 posts = [];
             }
 			for(var i = 0; i<posts.length; i++){
-				posts[i].tag = Post.getTag(posts[i].tag);
+				posts[i].tac = Post.getTag(posts[i].tag);
 			}
             res.render('index', {
                 title: '主页-Kinice的个人博客',
@@ -166,7 +166,7 @@ module.exports = function(app) {
             }
             var ttl = Post.getTag(req.params.tag);
             for(var i = 0; i<posts.length; i++){
-                posts[i].tag = Post.getTag(posts[i].tag);
+                posts[i].tac = Post.getTag(posts[i].tag);
             }
             res.render('articleList', {
                 tag: ttl || null,
@@ -215,6 +215,9 @@ module.exports = function(app) {
             if(err){
                 req.flash('error', err);
                 return res.redirect('/');
+            }
+            for(var i = 0; i<posts.length; i++){
+                posts[i].tac = Post.getTag(posts[i].tag);
             }
             res.render('search',{
                 query: req.query.keyword,
