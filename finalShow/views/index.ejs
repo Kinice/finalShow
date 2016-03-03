@@ -1,6 +1,13 @@
 <%- include header %>
     <!-- header part -->
     <!-- main body part -->
+<script>
+    $(function(){
+        $.get('http://localhost:3005/test',function(d){
+            console.log(d);
+        });
+    });
+</script>
     <div class="g-bd">
         <div class="g-top">
             <div class="m-info">

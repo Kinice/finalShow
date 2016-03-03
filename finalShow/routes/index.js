@@ -198,7 +198,11 @@ module.exports = function(app) {
     });
     //test
     app.get('/test',function(req, res){
-        callback('hello');
+        var data = {
+            first: '1',
+            second: '2'
+        }
+        res.jsonp(data);
     });
     //message
     app.get('/message', function (req, res) {

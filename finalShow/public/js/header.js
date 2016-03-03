@@ -56,6 +56,7 @@ $(function(){
         }
     });
 });
+
 function menuSlide(){
     if($('.mobile-menu').css('display') == 'block'){
         $('.mobile-menu').slideUp(150);
