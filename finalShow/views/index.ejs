@@ -14,9 +14,9 @@
               </h2>
               <p class="info">
                 <%= post.name %> · <%= post.time.day %> · 分类：<a href="/articleList/<%= post.tag %>"><%= post.tac %></a><% if(typeof post.describe=='object'){ %>
-                    <%= ' · 标签：'  %>
+                    <%=' · 标签：'%>
                     <% post.describe.forEach(function(i,index){ %>
-                         <a href="#"><%=  i %></a>
+                         <a href="/search?keyword=<%= i %>"><%= i %></a>
                     <% }) %>
                   <% } %>
               </p>

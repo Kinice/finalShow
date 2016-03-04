@@ -142,13 +142,11 @@ Post.search = function(keyword, callback){
             }
             var pattern = new RegExp(keyword, 'i');
             collection.find({
-                "title": pattern
-            },{
-                "post":1,
-                "name": 1,
-                "time": 1,
-                "title": 1,
-                "tag": 1
+                "$or" :[{
+                    "describe":pattern
+                },{
+                    "title":pattern
+                }]
             }).sort({
                 time: -1
             }).toArray(function(err, docs){
