@@ -13,11 +13,12 @@ marked.setOptions({
     smartypants: false
 });
 
-function Post(name, title , post ,tag){
+function Post(name, title , post ,tag ,describe){
 	this.name = name;
 	this.title = title;
 	this.post = post;
     this.tag = tag;
+    this.describe = describe;
 }
 
 module.exports = Post;
@@ -39,7 +40,8 @@ Post.prototype.save = function(callback){
 		time: time,
 		title: this.title,
 		post: this.post,
-        tag: this.tag
+        tag: this.tag,
+        describe: this.describe.split(',')
 	};
 	//Open Database----
 	mongodb.open(function(err, db){
@@ -92,7 +94,7 @@ Post.getAllArticles = function(name, callback){
 				}
                 //Mark down
                 docs.forEach(function(doc){
-                    doc.post = extract(marked(doc.post));
+                    doc.prepost = extract(marked(doc.post));
                 });
 
 				callback(null, docs);
@@ -154,6 +156,10 @@ Post.search = function(keyword, callback){
                 if(err){
                     return callback(err);
                 }
+                //Mark down
+                docs.forEach(function(doc){
+                    doc.prepost = extract(marked(doc.post));
+                });
                 callback(null, docs);
             });
         });
@@ -185,7 +191,7 @@ Post.getArticlesByTag = function(tag, callback){
                 }
                 //Mark down
                 docs.forEach(function(doc){
-                    doc.post = extract(marked(doc.post));
+                    doc.prepost = extract(marked(doc.post));
                 });
 
                 callback(null, docs);
@@ -194,7 +200,7 @@ Post.getArticlesByTag = function(tag, callback){
     });
 };
 //extract tags into chinese
-Post.getTag=function(tag){
+Post.getTag = function(tag){
 	var s;
 	if(tag == 'about-code'){
 		s='工作日常'; 

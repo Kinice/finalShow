@@ -115,7 +115,7 @@ module.exports = function(app) {
     app.post('/post', checkLogin);
     app.post('/post', function (req, res) {
         var currentUser = req.session.user,
-            post = new Post(currentUser.name, req.body.title, req.body.post,req.body.tag);
+            post = new Post(currentUser.name, req.body.title, req.body.post,req.body.tag,req.body.describe);
         post.save(function(err){
             if(err){
                 req.flash('error', err);
@@ -198,11 +198,16 @@ module.exports = function(app) {
     });
     //test
     app.get('/test',function(req, res){
-        var data = {
-            first: '1',
-            second: '2'
-        }
-        res.jsonp(data);
+        Post.getAllArticles(null, function(err, posts){
+            if(err){
+                posts = [];
+            }
+            for(var i = 0; i<posts.length; i++){
+                posts[i].tac = Post.getTag(posts[i].tag);
+            }
+            res.jsonp(posts);
+        });
+
     });
     //message
     app.get('/message', function (req, res) {

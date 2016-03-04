@@ -11,12 +11,17 @@
                 <a href="article/<%= post._id %>"><%= post.title %></a>
             </h2>
             <p class="info">
-                <%= post.name %> · <%= post.time.day %> · 分类：<a href="/articleList/<%= post.tag %>"><%= post.tac %></a>
+                <%= post.name %> · <%= post.time.day %> · 分类：<a href="/articleList/<%= post.tag %>"><%= post.tac %></a><% if(typeof post.describe=='object'){ %>
+                <%= ' · 标签：'  %>
+                <% post.describe.forEach(function(i,index){ %>
+                <a href="#"><%=  i %></a>
+                <% }) %>
+                <% } %>
             </p>
-            <% if(post.post.length>160){%>
-            <p class="pre"><%- post.post.substr(0,160) + '...' %></p>
+            <% if(post.prepost.length>160){%>
+            <p class="pre"><%- post.prepost.substr(0,160) + '...' %></p>
             <%}else{%>
-            <p class="pre"><%- post.post %></p>
+            <p class="pre"><%- post.prepost %></p>
             <%}%>
         </div>
         <% }) %>
