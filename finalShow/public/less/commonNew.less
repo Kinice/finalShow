@@ -303,6 +303,7 @@ nav{
         img{
           height: 100%;
           width: auto;
+          max-width: 292px;
         }
       }
       .m-kind-info{
@@ -581,6 +582,22 @@ footer.g-ft{
 @media screen and (max-width: 960px) {
   .g-bd .g-inner{
     width: 95%;
+    .m-kind{
+      .m-kind-img{
+        height: 220px;
+      }
+      .m-kind-info{
+        width:100%;
+        height: 180px;
+        padding-top:10px;
+        h2{
+          font-size: 26px;
+          padding:5px 0;
+        }
+      }
+      width:292px;
+      height: 400px;
+    }
     .g-aside {
       float: none;
       width: 100%;
@@ -630,6 +647,11 @@ footer.g-ft{
     }
   }
   .g-bd{
+    .g-inner{
+      .m-kind{
+        box-shadow: 2px 2px 8px #aaa;
+      }
+    }
     margin-top:2 * @headHeight;
     .g-top .m-info {
       width: 100%;
