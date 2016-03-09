@@ -198,14 +198,13 @@ module.exports = function(app) {
     });
     //test
     app.get('/test',function(req, res){
-        Post.getAllArticles(null, function(err, posts){
+        Post.getDescribes('about-code', function(err, data){
             if(err){
-                posts = [];
+                data = [];
             }
-            for(var i = 0; i<posts.length; i++){
-                posts[i].tac = Post.getTag(posts[i].tag);
-            }
-            res.jsonp(posts);
+            var datas = eval(data);
+            console.log(datas.describe);
+            res.jsonp(data);
         });
 
     });

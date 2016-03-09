@@ -67,7 +67,27 @@ Post.prototype.save = function(callback){
 		});
 	});
 };
-
+Post.getDescribes = function(tag, callback){
+    mongodb.open(function(err, db){
+        if(err){
+            return callback(err);
+        }
+        db.collection('posts',function(err, collection){
+            if(err){
+                return callback(err);
+            }
+            collection.find({
+                'tag': tag
+            }).toArray(function(err, descis){
+                mongodb.close();
+                if(err){
+                    return callback(err);
+                }
+                callback(null, descis);
+            });
+        });
+    });
+}
 //read article and other informations
 Post.getAllArticles = function(name, callback){
 	//Open Database
