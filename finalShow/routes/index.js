@@ -202,11 +202,14 @@ module.exports = function(app) {
             if(err){
                 data = [];
             }
-            var datas = eval(data);
-            console.log(datas.describe);
-            res.jsonp(data);
+            var dec = [];
+            for(var i in data){
+                for(var j in data[i].describe){
+                    dec.push(data[i].describe[j]);
+                }
+            }
+            res.jsonp(dec);
         });
-
     });
     //message
     app.get('/message', function (req, res) {
