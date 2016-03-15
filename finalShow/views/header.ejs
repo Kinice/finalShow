@@ -18,12 +18,32 @@
 <header>
     <div class="m-logo">
         <a href="/" title="回到首页"><h1>Kinice的个人博客</h1></a>
-        <i class="iconfont home">&#xe609;</i>
         <i class="iconfont menu">&#xe606;</i>
         <div class="mobile-menu">
-            <form action="#">
+            <form action="/search" method="GET">
                <input  type="text" placeholder="search">
             </form>
+            <nav>
+                <ul>
+                    <li><a href="/">主页</a></li>
+                    <li>
+                        <a href="/about#/bored">关于我</a>
+                        <ul class="li-inside">
+                            <li><a href="https://github.com/Kinice/" class="iconfont" target="_blank">&#xe600;</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/articleList/all">文章列表</a>
+                        <ul class="li-inside">
+                            <li><a href="/articleList/about-code">工作日常</a></li>
+                            <li><a href="/articleList/brain-hole">脑洞钻孔</a></li>
+                            <li><a href="/articleList/niu-b">牛B网文</a></li>
+                            <li><a href="http://i.youku.com/kinicepro" target="_blank">自导视频</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/message">留言</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
         <div class="iconfont pin">&#xe60f;</div>
@@ -33,7 +53,7 @@
                 <input type="submit" value=""/>
             </form>
         </div>
-        <nav>
+        <nav class="out-nav">
             <ul>
                 <li><a href="/">主页</a></li>
                 <li>

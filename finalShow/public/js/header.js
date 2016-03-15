@@ -16,16 +16,17 @@ $(function(){
     }
 	$('.menu').click(function() {
 		/* Act on the event */
-        var randNum = Math.random();
-        if(randNum >= 0 && randNum <0.5){
-            menuSlide();
-        }else{
-            menuFade();
-        }
+//        var randNum = Math.random();
+//        if(randNum >= 0 && randNum <0.5){
+//            menuSlide();
+//        }else{
+//            menuFade();
+//        }
+        menuSlide();
 	});
-    $('.home').click(function(){
-        backOne();
-    });
+//    $('.home').click(function(){
+//        backOne();
+//    });
     $(document).scroll(function(){
         if(getScrollTop() <= 600){
             $('.back-to-top').stop().fadeOut();
@@ -64,19 +65,19 @@ function menuSlide(){
         $('.mobile-menu').slideDown(150);
     }
 }
-function menuFade(){
-    if($('.mobile-menu').css('display') == 'block'){
-        $('.mobile-menu').fadeOut(150);
-    }else{
-        $('.mobile-menu').fadeIn(150);
-    }
-}
+//function menuFade(){
+//    if($('.mobile-menu').css('display') == 'block'){
+//        $('.mobile-menu').fadeOut(150);
+//    }else{
+//        $('.mobile-menu').fadeIn(150);
+//    }
+//}
 function getScrollTop(){
     return $(document).scrollTop();
 }
-function backOne(){
-    window.history.go(-1);
-}
+//function backOne(){
+//    window.history.go(-1);
+//}
 function dispAbsolute(element){
     sessionStorage.pin = 'absolute';
     element.css('position','absolute');

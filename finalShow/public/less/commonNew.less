@@ -85,14 +85,14 @@ header{
     }
   }
   .mobile-menu{
-    width: 90%;
+    width: 100%;
     padding: 10px 0;
-    background: #acd0ce;
-    position: absolute;
+    background: @headBgColor;
+    //position: absolute;
     top: @headHeight - 2;
-    right: 5%;
-    z-index: 102;
-    border-radius: 2px;
+    //right: 5%;
+    //z-index: 102;
+    //border-radius: 2px;
     display: none;
     form{
       padding: 0;
@@ -646,13 +646,15 @@ footer.g-ft{
       display: inline-block;
     }
   }
+  .out-nav{
+    display: none;
+  }
   .g-bd{
     .g-inner{
       .m-kind{
         box-shadow: 2px 2px 8px #aaa;
       }
     }
-    margin-top:2 * @headHeight;
     .g-top .m-info {
       width: 100%;
       white-space: nowrap;
