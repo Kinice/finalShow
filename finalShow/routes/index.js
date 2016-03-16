@@ -202,13 +202,7 @@ module.exports = function(app) {
             if(err){
                 data = [];
             }
-            var dec = [];
-            for(var i in data){
-                for(var j in data[i].describe){
-                    dec.push(data[i].describe[j]);
-                }
-            }
-            res.jsonp(dec);
+            console.log(data);
         });
     });
     //message

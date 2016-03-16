@@ -232,7 +232,7 @@ Post.getTag = function(tag){
 	return s;
 }
 //extract string from html tags
-function extract(s){
+var extract = function(s){
     var fin = [];
     var string;
     var bool=false;
