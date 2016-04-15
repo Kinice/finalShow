@@ -86,3 +86,34 @@ function dispFixed(element){
     sessionStorage.pin = 'fixed';
     element.css('position','fixed');
 }
+
+(function(){
+    var oriTitle = document.title;
+    var hidden,state,visibilityChange;
+    if(typeof document.hidden !=='undefined'){
+        hidden = 'hidden';
+        visibilityChange = 'visibilitychange';
+        state = 'visibilityState';
+    }else if(typeof document.mozHidden !=='undefined'){
+        hidden = 'mozHidden';
+        visibilityChange = 'mozvisibilitychange';
+        state = 'mozVisibilityState';
+    }else if(typeof document.webkitHidden !=='undefined'){
+        hidden = 'webkitHidden';
+        visibilityChange = 'webkitvisibilitychange';
+        state = 'webkitVisibilityState';
+    }else if(typeof document.msHidden !=='undefined'){
+        hidden = 'msHidden';
+        visibilityChange = 'msvisibilitychange';
+        state = 'msVisibilityState';
+    }
+    console.log(hidden+','+visibilityChange+','+state);
+    document.addEventListener(visibilityChange,function(){
+        var h = event.target[hidden];
+        if(h){
+            document.title='(｡・`ω´･)'+oriTitle;
+        }else{
+            document.title = oriTitle;
+        }
+    },true);
+}());
