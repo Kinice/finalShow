@@ -23,7 +23,7 @@ function Post(name, title , post ,tag ,describe){
 
 module.exports = Post;
 
-//store an article and its` info
+//store an article and its info
 Post.prototype.save = function(callback){
 	var date = new Date();
 	//store time format
@@ -41,6 +41,7 @@ Post.prototype.save = function(callback){
 		title: this.title,
 		post: this.post,
         tag: this.tag,
+        comments: [],
         describe: this.describe.split(',')
 	};
 	//Open Database----

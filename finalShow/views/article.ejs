@@ -3,10 +3,27 @@
 <!-- main body part -->
 <div class="g-bd">
     <div class="g-inner clearfix">
-        <article class="k-article">
-            <h1><%= post.title %></h1>
+        <div class="g-left">
+            <article class="k-article">
+                <h1><%= post.title %></h1>
                 <%- post.post %>
-        </article>
+                <br/>
+                <hr/>
+            </article>
+            <div class="article-comment">
+                <h3>评论</h3>
+                <div class="com-container">
+                    <div class="com-avatar">
+                        <img src="/images/avatar.jpg" width="50px" height="50px"/>
+                    </div>
+                    <div class="com-right">
+                        <p class="com-name">Hello</p>
+                        <p class="com-content">你好我是评论一哈哈哈哈。</p>
+                        <div class="com-time">2016年4月18日</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <aside class="g-aside">
             <div class="aside-block">
                 <img class="my-head" src="/static/images/avatar-my.jpg">
