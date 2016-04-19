@@ -284,14 +284,15 @@ nav{
               padding: 4px;
             }
             .com-name{
-              font-size: 15px;
+              font-size: 14px;
+              color: #888;
             }
             .com-content{
-              
+              font-size: 14px;
             }
             .com-time{
               font-size: 13px;
-              color: #777;
+              color: #999;
             }
           }
         }
@@ -318,6 +319,22 @@ nav{
               resize: none;
               padding: 4px 5px;
               margin-bottom: 5px;
+              &:focus{
+                border-color: @orangeColor;
+              }
+            }
+            label{
+              display: inline-block;
+              width: 80px;
+              line-height: 30px;
+              span{
+                color: @orangeColor;
+              }
+            }
+            input[type='text']{
+              border: 1px solid #888;
+              outline: none;
+              padding: 2px 3px;
               &:focus{
                 border-color: @orangeColor;
               }
