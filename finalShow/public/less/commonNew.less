@@ -269,7 +269,7 @@ nav{
         .com-container{
           margin: 5px;
           border-top: 1px solid #666;
-          padding: 20px 10px;
+          padding: 20px 10px 10px;
           .com-avatar{
             float: left;
             img{
@@ -281,7 +281,56 @@ nav{
             float: left;
             padding: 0 10px;
             p{
-
+              padding: 4px;
+            }
+            .com-name{
+              font-size: 15px;
+            }
+            .com-content{
+              
+            }
+            .com-time{
+              font-size: 13px;
+              color: #777;
+            }
+          }
+        }
+        .talkbox{
+          border-top:1px solid #777;
+          margin: 10px auto;
+          background-color: #fff;
+          padding: 10px 20px;
+          zoom: 1;
+          h2{
+            font-size: 18px;
+          }
+          .content-form{
+            display: block;
+            width: 100%;
+            padding: 5px 0;
+            p{
+              line-height: 1.5;
+            }
+            textarea{
+              border-width: 1px;
+              width: 98%;
+              height: 68px;
+              resize: none;
+              padding: 4px 5px;
+              margin-bottom: 5px;
+              &:focus{
+                border-color: @orangeColor;
+              }
+            }
+            input[type='button']{
+              float: right;
+              background-color: @orangeColor;
+              border: none;
+              width: 50px;
+              height: 26px;
+              margin-right: 3px;
+              color: #fff;
+              cursor: pointer;
             }
           }
         }
@@ -363,7 +412,7 @@ nav{
           }
         }
       }
-      .boxshadow
+      .boxshadow;
     }
     .m-art-list{
       width: 290px;
@@ -625,12 +674,14 @@ footer.g-ft{
       height: 400px;
     }
     .g-aside {
-      float: none;
       width: 100%;
       text-align: center;
       margin: 10px 0;
+      .aside-block{
+        padding:10px 0;
+      }
     }
-    .k-article{
+    .g-left{
       width: 100%;
     }
     .talkbox{
