@@ -20,6 +20,17 @@ module.exports = function(app) {
             });
         });
     });
+    app.get('/allArticles', function (req, res){
+        Post.getAllArticles(null, function(err, posts){
+            if(err){
+                posts = [];
+            }
+            for(var i = 0; i<posts.length; i++){
+                posts[i].tac = Post.getTag(posts[i].tag);
+            }
+            res.jsonp(posts);
+        })
+    });
     //注册
     app.get('/reg', checkNotLogin);
     app.get('/reg', function (req, res) {
