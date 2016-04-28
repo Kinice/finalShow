@@ -28,6 +28,9 @@ module.exports = function(app) {
             for(var i = 0; i<posts.length; i++){
                 posts[i].tac = Post.getTag(posts[i].tag);
             }
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+            res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
             res.jsonp(posts);
         })
     });
