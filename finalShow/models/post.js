@@ -34,7 +34,7 @@ Post.prototype.save = function(callback){
 		day: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
 		minute: date.getFullYear() + '-' + (date.getMonth() + 1) + date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
 	}
-	//The document----
+	//The document
 	var post = {
 		name: this.name,
 		time: time,
@@ -44,7 +44,7 @@ Post.prototype.save = function(callback){
         comments: [],
         describe: this.describe.split(',')
 	};
-	//Open Database----
+	//Open Database
 	mongodb.open(function(err, db){
 		if(err){
 			return callback(err);
@@ -146,9 +146,6 @@ Post.getOneArticle = function(_id,callback){
               //MARKDOWN
               if(doc){
                   doc.post = marked(doc.post);
-                  doc.comments.forEach(function(comment){
-                      comment.content = marked(comment.content);
-                  });
               }
               callback(null, doc);
           });

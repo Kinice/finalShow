@@ -12,36 +12,40 @@
             </article>
             <div class="article-comment">
                 <h3>评论</h3>
-                <% if(!!!post.comments){ %>
+                <% if(!!post.comments.name){%>
                 <div class="com-container">
                     <h3 style="text-align: center;color: #bbb;">暂无评论</h3>
                 </div>
                 <%}else{%>
-                <div class="com-container clearfix">
-                    <div class="com-avatar">
-                        <img src="/images/avatar.jpg" width="50px" height="50px"/>
-                    </div>
-                    <div class="com-right">
-                        <p class="com-name">Hello</p>
-                        <p class="com-content">你好我是评论一哈哈哈哈。</p>
-                        <p class="com-time">2016年4月18日</p>
-                    </div>
-                </div>
+                    <% post.comments.forEach(function(comment,index){ %>
+                        <div class="com-container clearfix">
+                            <div class="com-avatar">
+                                <img src="/images/avatar.jpg" width="50px" height="50px"/>
+                            </div>
+                            <div class="com-right">
+                                <p class="com-name"><%= comment.name %></p>
+                                <p class="com-content"><%= comment.content %></p>
+                                <p class="com-time"><%= comment.time %></p>
+                            </div>
+                        </div>
+                    <%})%>
                 <%}%>
                 <div class="talkbox">
                     <p>在这里输入</p>
                     <div class="content-form clearfix">
-                        <div class="content-input">
-                            <% if(user){ %>
-                            <label><span>*</span> 名字：</label><input type="text" name="uname" value="<%= user.name %>"/><br/>
-                            <label><span>*</span> E-mail：</label><input type="text" name="email" value="<%= user.email %>"/><br/>
-                            <% }else{ %>
-                            <label><span>*</span> 名字：</label><input type="text" name="uname"/><br/>
-                            <label><span>*</span> E-mail：</label><input type="text" name="email"/><br/>
-                            <%}%>
-                            <label>评论内容：</label><textarea name="content"></textarea>
-                        </div>
-                        <input type="button" value="提交">
+                        <form action="/article/<%= post._id %>" method="post">
+                            <div class="content-input">
+                                <% if(user){ %>
+                                <label><span>*</span> 名字：</label><input type="text" name="uname" value="<%= user.name %>"/><br/>
+                                <label><span>*</span> E-mail：</label><input type="text" name="email" value="<%= user.email %>"/><br/>
+                                <% }else{ %>
+                                <label><span>*</span> 名字：</label><input type="text" name="uname"/><br/>
+                                <label><span>*</span> E-mail：</label><input type="text" name="email"/><br/>
+                                <%}%>
+                                <label>评论内容：</label><textarea name="content"></textarea>
+                            </div>
+                            <input type="submit" value="提交">
+                        </form>
                     </div>
                 </div>
             </div>

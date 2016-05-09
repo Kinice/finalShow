@@ -1,6 +1,7 @@
 var crypto = require('crypto'),
     User = require('../models/user.js'),
-    Post = require('../models/post.js');
+    Post = require('../models/post.js'),
+    Comment = require('../models/comment.js');
 module.exports = function(app) {
     //主页
     app.get('/', function (req, res) {
@@ -19,20 +20,6 @@ module.exports = function(app) {
                 error: req.flash('error').toString()
             });
         });
-    });
-    app.get('/allArticles', function (req, res){
-        Post.getAllArticles(null, function(err, posts){
-            if(err){
-                posts = [];
-            }
-            for(var i = 0; i<posts.length; i++){
-                posts[i].tac = Post.getTag(posts[i].tag);
-            }
-            res.setHeader("Access-Control-Allow-Origin","*");
-            res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-            res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
-            res.jsonp(posts);
-        })
     });
     //注册
     app.get('/reg', checkNotLogin);
@@ -210,13 +197,24 @@ module.exports = function(app) {
             });
         });
     });
-    //test
-    app.get('/test',function(req, res){
-        Post.getDescribes('about-code', function(err, data){
+    //comment post
+    app.post('/article/:_id', function(req, res){
+        var date = new Date(),
+            time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+        var comment = {
+            name: req.body.uname || '',
+            email: req.body.email || 'szp93@126.com',
+            time: time,
+            content: req.body.content
+        }
+        var newComment = new Comment(req.params._id,comment);
+        newComment.save(function(err){
             if(err){
-                data = [];
+                req.flash('error', err);
+                return res.redirect('back');
             }
-            console.log(data);
+            req.flash('success','留言成功！');
+            res.redirect('back');
         });
     });
     //message
@@ -248,6 +246,22 @@ module.exports = function(app) {
             });
         });
     });
+    //rest api part
+    app.get('/allArticles', function (req, res){
+        Post.getAllArticles(null, function(err, posts){
+            if(err){
+                posts = [];
+            }
+            for(var i = 0; i<posts.length; i++){
+                posts[i].tac = Post.getTag(posts[i].tag);
+            }
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+            res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+            res.jsonp(posts);
+        })
+    });
+    //function part
     function checkLogin(req, res, next) {
         if (!req.session.user) {
             req.flash('error', '未登录!');
