@@ -1,6 +1,7 @@
 /**
  * Created by Kinice on 15/11/18.
  */
+var crypto = require('crypto');
 var mongodb = require('./db');
 
 function User(user) {
