@@ -144,7 +144,12 @@ Post.getOneArticle = function(_id,callback){
                   return callback(err);
               }
               //MARKDOWN
-              doc.post = marked(doc.post);
+              if(doc){
+                  doc.post = marked(doc.post);
+                  doc.comments.forEach(function(comment){
+                      comment.content = marked(comment.content);
+                  });
+              }
               callback(null, doc);
           });
       });
