@@ -12,7 +12,7 @@
             </article>
             <div class="article-comment">
                 <h3>评论</h3>
-                <% if(!!post.comments.name){%>
+                <% if(post.comments.name == ''){%>
                 <div class="com-container">
                     <h3 style="text-align: center;color: #bbb;">暂无评论</h3>
                 </div>
@@ -20,7 +20,7 @@
                     <% post.comments.forEach(function(comment,index){ %>
                         <div class="com-container clearfix">
                             <div class="com-avatar">
-                                <img src="/images/avatar.jpg" width="50px" height="50px"/>
+                                <img src="<%= comment.head %>" width="50px" height="50px"/>
                             </div>
                             <div class="com-right">
                                 <p class="com-name"><%= comment.name %></p>

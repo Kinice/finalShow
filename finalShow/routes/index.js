@@ -124,7 +124,7 @@ module.exports = function(app) {
             }
             req.flash('success','发布成功');
             res.redirect('/');
-        });         
+        });
     });
     //登出
     app.get('/logout', checkLogin);
@@ -200,11 +200,15 @@ module.exports = function(app) {
     //comment post
     app.post('/article/:_id', function(req, res){
         var date = new Date(),
-            time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+            time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()),
+            md5 = crypto.createHash('md5'),
+            emailMd5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
+            head = 'http://gravatar.duoshuo.com/avatar/'+emailMd5;
         var comment = {
             name: req.body.uname || '',
             email: req.body.email || 'szp93@126.com',
             time: time,
+            head: head,
             content: req.body.content
         }
         var newComment = new Comment(req.params._id,comment);
