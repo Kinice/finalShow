@@ -18,7 +18,7 @@
                     <h3 style="text-align: center;color: #bbb;">暂无评论</h3>
                 </div>
                 <%}else{%>
-                    <% post.comments.forEach(function(comment,index){ %>
+                    <% post.comments.reverse().forEach(function(comment,index){ %>
                         <div class="com-container clearfix">
                             <div class="com-avatar">
                                 <img src="<%= comment.head %>" width="50px" height="50px"/>
