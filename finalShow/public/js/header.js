@@ -1,4 +1,4 @@
-(function(){
+;(function(){
     $(function(){
         var $pin = $('.pin');
         var $hd = $('header');
