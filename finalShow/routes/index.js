@@ -203,12 +203,11 @@ module.exports = function(app) {
             time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()),
             md5 = crypto.createHash('md5'),
             emailMd5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
-            head = 'http://gravatar.duoshuo.com/avatar/'+emailMd5;
+            head = 'http://gravatar.duoshuo.com/avatar/'
         var comment = {
             name: req.body.uname || '',
             email: req.body.email || 'szp93@126.com',
             time: time,
-            head: head,
             content: req.body.content
         }
         var newComment = new Comment(req.params._id,comment);
@@ -251,7 +250,7 @@ module.exports = function(app) {
         });
     });
     //rest api part
-    app.get('/allArticles', function (req, res){
+    app.get('/api/allArticles', function (req, res){
         Post.getAllArticles(null, function(err, posts){
             if(err){
                 posts = [];
@@ -264,6 +263,50 @@ module.exports = function(app) {
             res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
             res.jsonp(posts);
         })
+    });
+    app.get('/api/search', function(req, res){
+        Post.search(req.query.keyword,function(err,posts){
+            if(err){
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            for(var i = 0; i<posts.length; i++){
+                posts[i].tac = Post.getTag(posts[i].tag);
+            }
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+            res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+            res.jsonp(posts);
+        });
+    });
+    app.post('/api/login', function (req, res) {
+        var status = [];
+        //md5
+        var md5 = crypto.createHash('md5'),
+            password = md5.update(req.body.password).digest('hex');
+        //check if the user exsisted
+        User.get(req.body.name, function(err, user){
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+            res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+            if(!user){
+                status.push('error1');
+                req.flash('error','检测不到身份信息，疑似入侵者');
+                return res.jsonp(status);
+            }
+            //check password
+            if(user.password != password){
+                status.push('error2');
+                req.flash('error','密码验证失败！警报！');
+                return res.jsonp(status);
+            }
+            status.push('success');
+            status.push(user);
+            //success
+            req.session.user = user;
+            req.flash('success','身份验证通过，准许通过');
+            res.jsonp(status);
+        });
     });
     //function part
     function checkLogin(req, res, next) {
