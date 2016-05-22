@@ -276,11 +276,21 @@ module.exports = function(app) {
             res.jsonp(post);
         });
     });
+    app.get('/api/getArticlesByName/:name', function(req,res){
+      Post.getAllArticles(req.params.name, function(err,post){
+        if(err){
+          return res.jsonp(err);
+        }
+        res.setHeader("Access-Control-Allow-Origin","*");
+        res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+        res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+        res.jsonp(post);
+      });
+    });
     app.get('/api/search', function(req, res){
         Post.search(req.query.keyword,function(err,posts){
             if(err){
-                req.flash('error', err);
-                return res.redirect('/');
+                res.jsonp('error');
             }
             for(var i = 0; i<posts.length; i++){
                 posts[i].tac = Post.getTag(posts[i].tag);
@@ -290,6 +300,48 @@ module.exports = function(app) {
             res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
             res.jsonp(posts);
         });
+    });
+    app.post('/api/reg', function(req, res) {
+      var name = req.body.name,
+          password = req.body.password,
+          status = [];
+      //md5md5md5md5md5md5md5md5md5md5
+      var md5 = crypto.createHash('md5'),
+          password = md5.update(req.body.password).digest('hex');
+      var newUser = new User({
+          name: name,
+          password: password,
+          email: req.body.email
+      });
+      console.log(newUser);
+      //check if the Database existed
+      res.setHeader("Access-Control-Allow-Origin","*");
+      res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+      res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+      User.get(newUser.name, function(err,user){
+          if(err){
+              req.flash('error',err);
+              status.push('error');
+              return res.jsonp(status);
+          }
+          if(user){
+              req.flash('error','人员身份冲突，无法确定是否为侵入者');
+              status.push('error1');
+              return res.jsonp(status);
+          }
+          //add new user
+          newUser.save(function(err,user){
+             if(err){
+                 req.flash('error',err);
+                 status.push('error2');
+                 return res.jsonp(status);
+             }
+              req.session.user = user;//save user`s information into session
+              req.flash('success','身份确认无误，信息写入');
+              status.push('success');
+              res.jsonp(status);
+          });
+      });
     });
     app.post('/api/login', function (req, res) {
         var status = [];
@@ -317,6 +369,22 @@ module.exports = function(app) {
             //success
             req.session.user = user;
             req.flash('success','身份验证通过，准许通过');
+            res.jsonp(status);
+        });
+    });
+    //api post
+    app.post('/api/post', function (req, res) {
+        var status = [],
+            post = new Post(req.body.name, req.body.title, req.body.post,req.body.tag,req.body.describe);
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+            res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+        post.save(function(err){
+            if(err){
+                status.push('error');
+                return res.jsonp(status);
+            }
+            status.push('success');
             res.jsonp(status);
         });
     });

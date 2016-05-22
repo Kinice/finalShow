@@ -8,5 +8,13 @@
 <script>
     hljs.initHighlightingOnLoad();
 </script>
+<script type="text/javascript">
+  $.post('http://kinice.top/api/login',{
+    name:'Kinice',
+    password:'123'
+  },function(data){
+    console.log(data);
+  });
+</script>
 </body>
 </html>
