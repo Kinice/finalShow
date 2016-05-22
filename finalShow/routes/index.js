@@ -325,7 +325,6 @@ module.exports = function(app) {
               return res.jsonp(status);
           }
           if(user){
-              req.flash('error','人员身份冲突，无法确定是否为侵入者');
               status.push('error1');
               return res.jsonp(status);
           }
@@ -337,7 +336,6 @@ module.exports = function(app) {
                  return res.jsonp(status);
              }
               req.session.user = user;//save user`s information into session
-              req.flash('success','身份确认无误，信息写入');
               status.push('success');
               res.jsonp(status);
           });
@@ -355,20 +353,17 @@ module.exports = function(app) {
             res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
             if(!user){
                 status.push('error1');
-                req.flash('error','检测不到身份信息，疑似入侵者');
                 return res.jsonp(status);
             }
             //check password
             if(user.password != password){
                 status.push('error2');
-                req.flash('error','密码验证失败！警报！');
                 return res.jsonp(status);
             }
             status.push('success');
             status.push(user);
             //success
             req.session.user = user;
-            req.flash('success','身份验证通过，准许通过');
             res.jsonp(status);
         });
     });
