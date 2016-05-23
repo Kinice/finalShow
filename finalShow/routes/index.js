@@ -84,6 +84,10 @@ module.exports = function(app) {
     });
     app.post('/login', function (req, res) {
         //md5
+        if(req.body.name==''||req.body.password==''){
+          req.flash('error','你逗我呢？');
+          return res.redirect('/login');
+        }
         var md5 = crypto.createHash('md5'),
             password = md5.update(req.body.password).digest('hex');
         //check if the user exsisted
