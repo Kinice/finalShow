@@ -332,7 +332,6 @@ module.exports = function(app) {
                  status.push('error2');
                  return res.jsonp(status);
              }
-              req.session.user = user;//save user`s information into session
               status.push('success');
               res.jsonp(status);
           });
