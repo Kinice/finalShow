@@ -274,6 +274,9 @@ module.exports = function(app) {
                 req.flash('error', err);
                 return res.redirect('/');
             }
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+            res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
             res.jsonp(post);
         });
     });
