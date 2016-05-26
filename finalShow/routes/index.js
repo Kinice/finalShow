@@ -255,7 +255,7 @@ module.exports = function(app) {
         });
     });
     //rest api part
-    app.get('api/articleList/:tag', function (req, res) {
+    app.get('/api/articleList/:tag', function (req, res) {
         Post.getArticlesByTag(req.params.tag, function(err, posts){
             if(err){
                 posts=[];
