@@ -401,13 +401,16 @@ module.exports = function(app) {
         }
         var newComment = new Comment(req.params._id,comment);
         newComment.save(function(err){
-          res.setHeader("Access-Control-Allow-Origin","*");
-          res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-          res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
             if(err){
+              res.setHeader("Access-Control-Allow-Origin","*");
+              res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+              res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
               status.push('error');
               return res.jsonp(status);
             }
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+            res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
             status.push('success');
             res.jsonp(status);
         });
