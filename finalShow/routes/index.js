@@ -207,12 +207,13 @@ module.exports = function(app) {
             time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()),
             md5 = crypto.createHash('md5'),
             emailMd5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
-            head = 'http://gravatar.duoshuo.com/avatar/'
+            head = 'http://gravatar.duoshuo.com/avatar/'+emailMd5;
         var comment = {
             name: req.body.uname || '',
             email: req.body.email || 'szp93@126.com',
             time: time,
-            content: req.body.content
+            content: req.body.content,
+            head:head
         }
         var newComment = new Comment(req.params._id,comment);
         newComment.save(function(err){
@@ -228,9 +229,9 @@ module.exports = function(app) {
     app.get('/message', function (req, res) {
         res.render('message',{
         title: '留言-Kinice的博客',
-	    user: req.session.user,
-	    success: req.flash('success').toString(),
-	    error: req.flash('error').toString()
+	      user: req.session.user,
+	      success: req.flash('success').toString(),
+	      error: req.flash('error').toString()
         });
     });
     //search
@@ -317,7 +318,6 @@ module.exports = function(app) {
           password: password,
           email: req.body.email
       });
-      console.log(newUser);
       //check if the Database existed
       res.setHeader("Access-Control-Allow-Origin","*");
       res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
@@ -384,6 +384,34 @@ module.exports = function(app) {
             res.jsonp(status);
         });
     });
+    //api comment
+    app.post('/api/article/:_id', function(req, res){
+        var status = [];
+        var date = new Date(),
+            time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()),
+            md5 = crypto.createHash('md5'),
+            emailMd5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
+            head = 'http://gravatar.duoshuo.com/avatar/'+emailMd5;
+        var comment = {
+            name: req.body.uname || '',
+            email: req.body.email || 'szp93@126.com',
+            time: time,
+            content: req.body.content,
+            head:head
+        }
+        var newComment = new Comment(req.params._id,comment);
+        res.setHeader("Access-Control-Allow-Origin","*");
+        res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+        res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+        newComment.save(function(err){
+            if(err){
+              status.push('error');
+              return res.jsonp(status);
+            }
+            status.push('success');
+            res.jsonp(status);
+        });
+    });
     //function part
     function checkLogin(req, res, next) {
         if (!req.session.user) {
@@ -392,7 +420,6 @@ module.exports = function(app) {
         }
         next();
     }
-
     function checkNotLogin(req, res, next) {
         if (req.session.user) {
             req.flash('error', '已登录!');

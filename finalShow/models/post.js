@@ -40,9 +40,9 @@ Post.prototype.save = function(callback){
 		time: time,
 		title: this.title,
 		post: this.post,
-        tag: this.tag,
-        comments: [],
-        describe: this.describe.split(',')
+    tag: this.tag,
+    comments: [],
+    describe: this.describe.split(',')
 	};
 	//Open Database
 	mongodb.open(function(err, db){
@@ -224,7 +224,7 @@ Post.getArticlesByTag = function(tag, callback){
 Post.getTag = function(tag){
 	var s;
 	if(tag == 'about-code'){
-		s='工作日常'; 
+		s='工作日常';
 	}else if(tag == 'brain-hole'){
 		s='脑洞钻孔';
 	}else if(tag == 'niu-b'){
