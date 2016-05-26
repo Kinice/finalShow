@@ -255,6 +255,23 @@ module.exports = function(app) {
         });
     });
     //rest api part
+    app.get('api/articleList/:tag', function (req, res) {
+        Post.getArticlesByTag(req.params.tag, function(err, posts){
+            if(err){
+                posts=[];
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            var ttl = Post.getTag(req.params.tag);
+            for(var i = 0; i<posts.length; i++){
+                posts[i].tac = Post.getTag(posts[i].tag);
+            }
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+            res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+            res.jsonp(posts);
+        });
+    });
     app.get('/api/allArticles', function (req, res){
       res.setHeader("Access-Control-Allow-Origin","*");
       res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
