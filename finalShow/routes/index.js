@@ -400,10 +400,10 @@ module.exports = function(app) {
             head:head
         }
         var newComment = new Comment(req.params._id,comment);
-        res.setHeader("Access-Control-Allow-Origin","*");
-        res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-        res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
         newComment.save(function(err){
+          res.setHeader("Access-Control-Allow-Origin","*");
+          res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+          res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
             if(err){
               status.push('error');
               return res.jsonp(status);
