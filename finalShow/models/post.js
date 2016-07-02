@@ -123,6 +123,9 @@ Post.getAllArticles = function(name, callback){
 		});
 	});
 };
+Post.deleteOneArticle = function(_id,callback){
+  
+};
 Post.getOneArticle = function(_id,callback){
   //Open Database
   mongodb.open(function(err, db){
