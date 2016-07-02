@@ -124,7 +124,28 @@ Post.getAllArticles = function(name, callback){
 	});
 };
 Post.deleteOneArticle = function(_id,callback){
-  
+  mongodb.open(function(err, db){
+    if(err){
+      return callback(err);
+    }
+    db.collection('posts', function(err,collection){
+      if(err){
+        mongodb.close();
+        return callback(err);
+      }
+      collection.remove({
+        '_id' : new ObjectID(_id)
+      },{
+        w : 1
+      },function(err){
+        mongodb.close();
+        if(err){
+          return callback(err);
+        }
+        callback(null);
+      });
+    });
+  });
 };
 Post.getOneArticle = function(_id,callback){
   //Open Database

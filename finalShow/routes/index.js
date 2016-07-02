@@ -107,6 +107,23 @@ module.exports = function(app) {
             res.redirect('/')
         });
     });
+    //删除
+    app.get('/remove/:_id',checkLogin);
+    app.get('/remove/:_id',function(req, res){
+      var currentUser = req.session.user;
+      if(!req.session.user){
+        console.log(req.session.user);
+        return false;
+      }
+      Post.deleteOneArticle(req.params._id,function(err){
+        if(err){
+          req.flash('error',err);
+          return res.redirect('back');
+        }
+        req.flash('success','删除成功');
+        res.redirect('back');
+      });
+    });
     //发表
     app.get('/post', checkLogin);
     app.get('/post', function (req, res) {
