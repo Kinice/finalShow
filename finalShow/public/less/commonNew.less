@@ -19,7 +19,7 @@
 //some art
 .search{
   padding:0 5px;
-  font-size: 18px;
+  font-size: 15px;
   height: @headSearchheight;
   background-color: @searchBgColor;
 }
@@ -499,18 +499,22 @@ nav{
     }
     .m-info{
       position: absolute;
+      white-space: nowrap;
       z-index: 99;
-      width: 50%;
-      height: 100px;
-      bottom: 25%;
-      left: 15%;
-      padding: 30px;
+      left: 50%;
+      top: 50%;
+      -webkit-transform:translate(-50%,-50%);
+      transform:translate(-50%,-50%);
+      text-align: center;
       h1{
-        font-size: 36px;
-        padding-bottom: 20px;
+        display: inline-block;
+        color: #fff;
+        font-size: 80px;
+        padding-bottom: 40px;
       }
       p{
-        font-size: 16px;
+        color: #fff;
+        font-size: 18px;
       }
     }
   }
@@ -754,12 +758,12 @@ footer.g-ft{
       .home {
         padding-left: 20px;
         padding-right: 5px;
-        .mobile-icon
+        .mobile-icon;
       }
       .menu {
         padding-right: 20px;
         padding-left: 5px;
-        .mobile-icon
+        .mobile-icon;
       }
     }
   }
@@ -785,16 +789,15 @@ footer.g-ft{
     .g-top .m-info {
       width: 100%;
       white-space: nowrap;
-      width: auto;
-      top: 30%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -moz-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
+      h1{
+        font-size: 60px;
+      }
       p{
-        text-align: center;
+        font-size: 15px;
       }
     }
   }
@@ -813,5 +816,17 @@ footer.g-ft{
     bottom: 25px;
     right: 25px;
     border-radius: 4px;
+  }
+}
+@media screen and (max-width: 500px){
+  .g-bd{
+    .g-top .m-info{
+      h1{
+        font-size: 40px;
+      }
+      p{
+        font-size: 13px;
+      }
+    }
   }
 }

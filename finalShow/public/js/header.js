@@ -109,7 +109,6 @@
         visibilityChange = 'msvisibilitychange';
         state = 'msVisibilityState';
     }
-    console.log(hidden+','+visibilityChange+','+state);
     document.addEventListener(visibilityChange,function(){
         var h = event.target[hidden];
         if(h){
@@ -119,3 +118,8 @@
         }
     },true);
 }());
+console.log('啊，既然你都看到这儿来了');
+console.log('那说明咱俩有缘呗');
+console.log('顺道去github点个星星呀～');
+console.log('http://github.com/kinice/finalShow');
+console.log('虽然上面没啥好东西啦。。')
