@@ -242,15 +242,6 @@ module.exports = function(app) {
             res.redirect('back');
         });
     });
-    //message
-    app.get('/message', function (req, res) {
-        res.render('message',{
-        title: '留言-Kinice的博客',
-	      user: req.session.user,
-	      success: req.flash('success').toString(),
-	      error: req.flash('error').toString()
-        });
-    });
     //search
     app.get('/search', function(req, res){
         Post.search(req.query.keyword,function(err,posts){
