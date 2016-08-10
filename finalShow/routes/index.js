@@ -147,6 +147,40 @@ module.exports = function(app) {
             res.redirect('/');
         });
     });
+    //修改
+    app.get('/edit/:_id', checkLogin);
+    app.get('/edit/:_id', function (req, res) {
+        Post.getOneArticle(req.params._id, function(err, post){
+            if(err){
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('edit', {
+                title: '编辑-Kinice的博客',
+                articleTitle: req.params.title,
+                post: post,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        },true);
+    });
+    app.post('/edit/:_id', checkLogin);
+    app.post('/edit/:_id', function (req, res) {
+        var editedPost = {
+            title: req.body.title,
+            describe: req.body.describe,
+            post: req.body.post
+        }
+        Post.update(req.params._id, editedPost, function(err){
+            if(err){
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            req.flash('success','修改成功');
+            res.redirect('/');
+        });
+    });
     //登出
     app.get('/logout', checkLogin);
     app.get('/logout', function (req, res) {

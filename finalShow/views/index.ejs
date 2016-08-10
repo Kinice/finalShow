@@ -13,6 +13,7 @@
                   <a href="article/<%= post._id %>"><%= post.title %></a>
                   <% if(user && user.name === 'Kinice'){ %>
                   <a href="remove/<%= post._id %>"><i class="iconfont delete">&#xe611</i></a>
+                  <a href="edit/<%= post._id %>"><i class="iconfont delete">&#xe601</i></a>
                   <% } %>
               </h2>
               <p class="info">

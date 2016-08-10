@@ -1,0 +1,13 @@
+<%- include header %>
+    <!-- post part -->
+    <div class="g-bd">
+    	<div class="m-post">
+			<form method="post">
+				<label>标题：</label> <input name="title" type="text" placeholder="主人要干什么" value="<%= post.title %>"><br/>
+                <label>标签：</label> <input name="describe" type="text" placeholder="用,分开" value="<%= post.describe %>" /><br/>
+				<label>内容：</label> <textarea name="post" cols="100" rows="20"><%= post.post %></textarea><br/>
+				<input type="submit" value="请求发布">
+			</form>
+		</div>
+	</div>
+<%- include footer %>

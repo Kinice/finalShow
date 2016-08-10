@@ -68,6 +68,33 @@ Post.prototype.save = function(callback){
 		});
 	});
 };
+Post.update = function(_id, editedPost, callback){
+  mongodb.open(function(err, db){
+    if(err){
+      return callback(err);
+    }
+    db.collection('posts',function(err, collection){
+      if(err){
+        return callback(err);
+      }
+      collection.update({
+          '_id': new ObjectID(_id)
+        },{
+          $set: {
+             title: editedPost.title,
+             describe: editedPost.describe.split(','),
+             post: editedPost.post
+          }
+        },function(err){
+          mongodb.close();
+          if(err){
+            return callback(err);
+          }
+          callback(null);
+      });
+    });
+  });
+}
 Post.getDescribes = function(tag, callback){
     mongodb.open(function(err, db){
         if(err){
@@ -147,7 +174,7 @@ Post.deleteOneArticle = function(_id,callback){
     });
   });
 };
-Post.getOneArticle = function(_id,callback){
+Post.getOneArticle = function(_id,callback,edit){
   //Open Database
   mongodb.open(function(err, db){
       if(err){
@@ -168,7 +195,7 @@ Post.getOneArticle = function(_id,callback){
                   return callback(err);
               }
               //MARKDOWN
-              if(doc){
+              if(doc&&!edit){
                   doc.post = marked(doc.post);
               }
               callback(null, doc);
