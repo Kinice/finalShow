@@ -11,7 +11,7 @@
             <div class="m-index">
               <h2>			  
                   <a href="article/<%= post._id %>"><%= post.title %></a>
-                  <% if(user.name === 'Kinice'){ %>
+                  <% if(user && user.name === 'Kinice'){ %>
                   <a href="remove/<%= post._id %>"><i class="iconfont delete">&#xe611</i></a>
                   <% } %>
               </h2>
