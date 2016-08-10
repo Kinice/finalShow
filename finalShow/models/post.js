@@ -193,6 +193,8 @@ Post.search = function(keyword, callback){
                     "describe":pattern
                 },{
                     "title":pattern
+                },{
+                    "post":pattern
                 }]
             }).sort({
                 time: -1
