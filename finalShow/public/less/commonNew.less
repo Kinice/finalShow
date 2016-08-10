@@ -225,15 +225,22 @@ nav{
 		    width:100%;
         font-size: 34px;
         padding-bottom:15px;
-		position:relative;
-		&:before{
-			content:'';
-			height:37px;
-			width:8px;
-			position:absolute;
-			left:-20px - 5px;
-			background-color:@headHoverColor;
-		}
+    		position:relative;
+    		&:before{
+    			content:'';
+    			height:37px;
+    			width:8px;
+    			position:absolute;
+    			left:-20px - 5px;
+    			background-color:@headHoverColor;
+    		}
+        &:hover .delete{
+          display: inline-block;
+        }
+        .delete{
+          display: none;
+          vertical-align: middle;
+        }
       }
       p.info{
         a{

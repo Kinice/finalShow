@@ -11,6 +11,9 @@
             <div class="m-index">
               <h2>			  
                   <a href="article/<%= post._id %>"><%= post.title %></a>
+                  <% if(user.name === 'Kinice'){ %>
+                  <a href="remove/<%= post._id %>"><i class="iconfont delete">&#xe611</i></a>
+                  <% } %>
               </h2>
               <p class="info">
                 <%= post.name %> · <%= post.time.day %> · 分类：<a href="/articleList/<%= post.tag %>"><%= post.tac %></a><% if(typeof post.describe=='object'){ %>
