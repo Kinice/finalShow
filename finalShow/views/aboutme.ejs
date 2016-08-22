@@ -6,9 +6,18 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>关于我－Kinice</title>
     <meta name="author" content="Bartek Szopka" />
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
     <link href="/static/css/impress-demo.css" rel="stylesheet" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <style type="text/css">
+        .back-home{
+            position: absolute;
+            z-index: 99999;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%,0);
+            pointer-events: auto;
+        }
+    </style>
 </head>
 <body class="impress-not-supported">
 <div class="fallback-message">
@@ -74,6 +83,9 @@
 <div class="hint">
     <p>按<b>空格键</b>或<b>方向键</b>继续(触屏点右半边)</p>
 </div>
+<div class="back-home">
+            <a href="/">返回主页</a>
+        </div>
 <script>
 if ("ontouchstart" in document.documentElement) { 
     document.querySelector(".hint").innerHTML = "<p>按<b>空格键</b>或者<b>方向键</b>继续→</p>";
