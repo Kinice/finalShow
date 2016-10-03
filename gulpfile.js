@@ -25,7 +25,7 @@ gulp.task('browser-sync',['script','less'],function(){
         proxy: 'http://localhost:3000',
         baseDir: './',
         port: 3000,
-        uiPort: 3000
+        uiPort: 3001
     });
     gulp.watch('public/less/*.less',['less']);
     gulp.watch('public/js/*.js',['script']);
