@@ -5,6 +5,7 @@ var crypto = require('crypto'),
 module.exports = function(app) {
     //主页
     app.get('/', function (req, res) {
+        console.log(getClientIp(req));
         Post.getAllArticles(null, function(err, posts){
             if(err){
                 posts = [];
@@ -24,6 +25,7 @@ module.exports = function(app) {
     //注册
     app.get('/reg', checkNotLogin);
     app.get('/reg', function (req, res) {
+        console.log(getClientIp(req));
         res.render('reg', {
             title: '注册-Kinice的个人博客',
             user: req.session.user,
@@ -75,6 +77,7 @@ module.exports = function(app) {
     //登录
     app.get('/login', checkNotLogin);
     app.get('/login', function (req, res) {
+        console.log(getClientIp(req));
         res.render('login', {
             title: '登录-Kinice的个人博客',
             user:req.session.user,
@@ -127,6 +130,7 @@ module.exports = function(app) {
     //发表
     app.get('/post', checkLogin);
     app.get('/post', function (req, res) {
+        console.log(getClientIp(req));
         res.render('post', {
             title: '发表-Kinice的个人博客',
             user: req.session.user,
@@ -150,6 +154,7 @@ module.exports = function(app) {
     //修改
     app.get('/edit/:_id', checkLogin);
     app.get('/edit/:_id', function (req, res) {
+        console.log(getClientIp(req));
         Post.getOneArticle(req.params._id, function(err, post){
             if(err){
                 req.flash('error', err);
@@ -199,6 +204,7 @@ module.exports = function(app) {
     });
     //Article List
     app.get('/articleList/all', function(req,res){
+        console.log(getClientIp(req));
         Post.getAllArticles(null, function(err, posts){
             if(err){
                 posts = [];
@@ -214,6 +220,7 @@ module.exports = function(app) {
         });
     });
     app.get('/articleList/:tag', function (req, res) {
+        console.log(getClientIp(req));
         Post.getArticlesByTag(req.params.tag, function(err, posts){
             if(err){
                 posts=[];
@@ -237,6 +244,7 @@ module.exports = function(app) {
     });
     //article
     app.get('/article/:_id', function (req, res) {
+        console.log(getClientIp(req));
         Post.getOneArticle(req.params._id, function(err, post){
             if(err){
                 req.flash('error', err);
@@ -278,6 +286,7 @@ module.exports = function(app) {
     });
     //search
     app.get('/search', function(req, res){
+        console.log(getClientIp(req));
         Post.search(req.query.keyword,function(err,posts){
             if(err){
                 req.flash('error', err);
@@ -311,4 +320,10 @@ module.exports = function(app) {
         }
         next();
     }
+    function getClientIp(req) {
+        return req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
+    };
 };
