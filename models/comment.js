@@ -26,6 +26,7 @@ comment.prototype.save = function(callback){
             },{
                 $push:{'comments':comment}
             },function(err){
+                mongodb.close();
                 if(err){
                     return callback(err);
                 }
