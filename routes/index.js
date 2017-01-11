@@ -220,7 +220,6 @@ module.exports = function(app) {
         });
     });
     app.get('/articleList/:tag', function (req, res) {
-        console.log(getClientIp(req));
         Post.getArticlesByTag(req.params.tag, function(err, posts){
             if(err){
                 posts=[];
@@ -264,9 +263,8 @@ module.exports = function(app) {
     app.post('/article/:_id', function(req, res){
         var date = new Date(),
             time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()),
-            md5 = crypto.createHash('md5'),
-            emailMd5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
-            head = 'http://gravatar.duoshuo.com/avatar/'+emailMd5;
+            avartarNum = Math.round(Math.random()*13);
+            head = '/images/avatar'+avartarNum+'.jpg';
         var comment = {
             name: req.body.uname || '',
             email: req.body.email || 'szp93@126.com',
@@ -286,7 +284,6 @@ module.exports = function(app) {
     });
     //search
     app.get('/search', function(req, res){
-        console.log(getClientIp(req));
         Post.search(req.query.keyword,function(err,posts){
             if(err){
                 req.flash('error', err);
@@ -305,6 +302,17 @@ module.exports = function(app) {
             });
         });
     });
+    app.get('/avatar', function(req, res){
+        Comment.changeAvatars(function(err){
+            if(err){
+                console.log(err)
+                req.flash('error', err);
+                return res.redirect('back');
+            }
+            req.flash('success','修改头像成功');
+            res.redirect('back');
+        });
+    });
     //function part
     function checkLogin(req, res, next) {
         if (!req.session.user) {
@@ -321,9 +329,10 @@ module.exports = function(app) {
         next();
     }
     function getClientIp(req) {
-        return req.headers['x-forwarded-for'] ||
+        var time = new Date();
+        return (req.headers['x-forwarded-for'] ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress;
+        req.connection.socket.remoteAddress)+' '+time;
     };
 };
