@@ -303,7 +303,7 @@ module.exports = function(app) {
         });
     });
     app.get('/avatar', function(req, res){
-        Comment.changeAvatars(function(err){
+        Comment.avatar(function(err){
             if(err){
                 console.log(err)
                 req.flash('error', err);
