@@ -305,8 +305,9 @@ module.exports = function(app) {
             res.redirect('back');
         });
     });
-    app.get('/article/:_id/:name', function(req, res){
-        Comment.deleteComment(req.params._id,req.params.name,function(err){
+    app.get('/article/:_id/:timestamp', function(req, res){
+        console.log(req.params.timestamp)
+        Comment.deleteComment(req.params._id,req.params.timestamp,function(err){
             if(err){
               console.log(err)
               req.flash('error',err);

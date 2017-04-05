@@ -36,8 +36,7 @@ comment.prototype.save = function(callback){
     });
 }
 
-comment.deleteComment = function(_id,name,callback){
-  console.log(_id,name)
+comment.deleteComment = function(_id,timestamp,callback){
   mongodb.open(function(err, db){
     if(err){
       return callback(err);
@@ -52,7 +51,7 @@ comment.deleteComment = function(_id,name,callback){
       },{
         $pull: {
             'comments': {
-                'name': name
+                'timestamp': parseInt(timestamp)
             }
         }
       },function(err){
