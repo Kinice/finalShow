@@ -17,8 +17,8 @@ function Post(name, title , post ,tag ,describe){
 	this.name = name;
 	this.title = title;
 	this.post = post;
-    this.tag = tag;
-    this.describe = describe;
+  this.tag = tag;
+  this.describe = describe;
 }
 
 module.exports = Post;

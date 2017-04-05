@@ -285,14 +285,15 @@ module.exports = function(app) {
     app.post('/article/:_id', function(req, res){
         var date = new Date(),
             time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()),
-            avartarNum = Math.round(Math.random()*13);
+            avartarNum = Math.ceil(Math.random()*14);
             head = '/images/avatar'+avartarNum+'.jpg';
         var comment = {
             name: req.body.uname || '',
             email: req.body.email || 'szp93@126.com',
             time: time,
             content: req.body.content,
-            head:head
+            head: head,
+            timestamp: date.getTime()
         }
         var newComment = new Comment(req.params._id,comment);
         newComment.save(function(err){
@@ -304,6 +305,17 @@ module.exports = function(app) {
             res.redirect('back');
         });
     });
+    app.get('/article/:_id/:name', function(req, res){
+        Comment.deleteComment(req.params._id,req.params.name,function(err){
+            if(err){
+              console.log(err)
+              req.flash('error',err);
+              return res.redirect('back');
+            }
+            req.flash('success','删除成功');
+            res.redirect('back');
+        })
+    })
     //search
     app.get('/search', function(req, res){
         Post.search(req.query.keyword,function(err,posts){
