@@ -1,7 +1,8 @@
 var crypto = require('crypto'),
     User = require('../models/user.js'),
     Post = require('../models/post.js'),
-    Comment = require('../models/comment.js');
+    Comment = require('../models/comment.js')
+    Qr = require('../models/qrimage.js')
     
 /**
  *                    .::::.
@@ -348,6 +349,9 @@ module.exports = function(app) {
             res.redirect('back');
         });
     });
+
+
+    
       //rest api part
       app.get('/api/articleList/:tag', function (req, res) {
           Post.getArticlesByTag(req.params.tag, function(err, posts){
@@ -494,6 +498,24 @@ module.exports = function(app) {
              status.push('success');
              res.jsonp(status);
          });
+     });
+     app.post('/api/qrimage', function (req, res){
+        res.setHeader("Access-Control-Allow-Origin","*");
+        res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+        res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+        var final = {
+            code: 0
+        }
+        var qr_string = Qr.createQr(req.body.text,req.body.isUrl,function(err,result){
+            if(err){
+                final.code = 1
+                final.err = err
+                return console.error(err)
+            }
+            final.qr_string = result
+        });
+        
+        res.jsonp(final)
      });
      //api comment
      app.post('/api/article/:_id', function(req, res){
