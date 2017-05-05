@@ -4,11 +4,11 @@ var qr_result = {}
 
 module.exports = qr_result
 
-qr_result.createQr = function(text,isUrl,callback){
+qr_result.createQr = function(text,callback){
     if(!text){
         return callback('Has no text')
     }
-    var qr_svg = qr.imageSync(text,{type:'svg',parse_url:isUrl})
+    var qr_svg = qr.imageSync(text,{type:'svg'})
 
     return callback(null,qr_svg)
 }

@@ -364,16 +364,12 @@ module.exports = function(app) {
              for(var i = 0; i<posts.length; i++){
                  posts[i].tac = Post.getTag(posts[i].tag);
              }
-             res.setHeader("Access-Control-Allow-Origin","*");
-             res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-             res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+             accessControlAllow(res)
              res.jsonp(posts);
          });
      });
      app.get('/api/allArticles', function (req, res){
-       res.setHeader("Access-Control-Allow-Origin","*");
-       res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-       res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+accessControlAllow(res)
          Post.getAllArticles(null, function(err, posts){
              if(err){
                  posts = [];
@@ -390,9 +386,7 @@ module.exports = function(app) {
                  req.flash('error', err);
                  return res.redirect('/');
              }
-             res.setHeader("Access-Control-Allow-Origin","*");
-             res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-             res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+             accessControlAllow(res)
              res.jsonp(post);
          });
      });
@@ -401,9 +395,7 @@ module.exports = function(app) {
          if(err){
            return res.jsonp(err);
          }
-         res.setHeader("Access-Control-Allow-Origin","*");
-         res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-         res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+         accessControlAllow(res)
          res.jsonp(post);
        });
      });
@@ -415,9 +407,7 @@ module.exports = function(app) {
              for(var i = 0; i<posts.length; i++){
                  posts[i].tac = Post.getTag(posts[i].tag);
              }
-             res.setHeader("Access-Control-Allow-Origin","*");
-             res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-             res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+             accessControlAllow(res)
              res.jsonp(posts);
          });
      });
@@ -434,9 +424,7 @@ module.exports = function(app) {
            email: req.body.email
        });
        //check if the Database existed
-       res.setHeader("Access-Control-Allow-Origin","*");
-       res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-       res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+       accessControlAllow(res)
        User.get(newUser.name, function(err,user){
            if(err){
                req.flash('error',err);
@@ -466,9 +454,7 @@ module.exports = function(app) {
              password = md5.update(req.body.password).digest('hex');
          //check if the user exsisted
          User.get(req.body.name, function(err, user){
-             res.setHeader("Access-Control-Allow-Origin","*");
-             res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-             res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+             accessControlAllow(res)
              if(!user){
                  status.push('error1');
                  return res.jsonp(status);
@@ -487,9 +473,7 @@ module.exports = function(app) {
      app.post('/api/post', function (req, res) {
          var status = [],
              post = new Post(req.body.name, req.body.title, req.body.post,req.body.tag,req.body.describe);
-             res.setHeader("Access-Control-Allow-Origin","*");
-             res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-             res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+             accessControlAllow(res)
          post.save(function(err){
              if(err){
                  status.push('error');
@@ -500,13 +484,11 @@ module.exports = function(app) {
          });
      });
      app.post('/api/qrimage', function (req, res){
-        res.setHeader("Access-Control-Allow-Origin","*");
-        res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-        res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+        accessControlAllow(res)
         var final = {
             code: 0
         }
-        var qr_string = Qr.createQr(req.body.text,req.body.isUrl,function(err,result){
+        var qr_string = Qr.createQr(req.body.text,function(err,result){
             if(err){
                 final.code = 1
                 final.err = err
@@ -535,21 +517,22 @@ module.exports = function(app) {
          var newComment = new Comment(req.params._id,comment);
          newComment.save(function(err){
              if(err){
-               res.setHeader("Access-Control-Allow-Origin","*");
-               res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-               res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+               accessControlAllow(res)
                status.push('error');
                return res.jsonp(status);
              }
-             res.setHeader("Access-Control-Allow-Origin","*");
-             res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
-             res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+             accessControlAllow(res)
              status.push('success');
               res.jsonp(status);
           });
       });
 
     //function part
+    function accessControlAllow(res){
+        res.setHeader("Access-Control-Allow-Origin","*");
+        res.setHeader("Access-Control-Allow-Headers","Content-Type,Accept,Authorization");
+        res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,UPDATE,DELETE");
+    }
     function checkLogin(req, res, next) {
         if (!req.session.user) {
             req.flash('error', '未登录!');
