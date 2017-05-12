@@ -1,0 +1,9 @@
+/**
+ * Created by xiaoyezi on 15/11/17.
+ */
+module.exports = {
+  cookieSecret: 'cookiename',
+  db: 'dbname',
+  host: 'hostname',
+  port: port
+};
