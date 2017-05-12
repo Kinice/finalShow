@@ -1,5 +1,5 @@
 /**
- * Created by xiaoyezi on 15/11/17.
+ * Created by kinice on 15/11/17.
  */
 module.exports = {
   cookieSecret: 'cookiename',

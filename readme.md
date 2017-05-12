@@ -1,18 +1,6 @@
 # Kinice本人的博客
 
-## 近期完成一以及目标
-
-文章修改与删除工作完成，aboutme增加返回主页按钮，以上均已上线。
-
-接下来要做的事：分段加载、实验代码区域
-
-### 删除了留言模块。
-
-### 评论功能已上线！
-
-### 更新
-
-服务器已经部署好，地址是[kinice.top](http://www.kinice.top).
+## 介绍
 
 本来是要把这个repo作为毕设做的，但一步一步就做成了一个博客。毕设会再新开一个repo做，这个要在一个月内从阿里云上部署好。
 
@@ -24,6 +12,39 @@
 
 其余不提。
 
-现在刚完成了LESS的重构，在制作了后面内容的情况下，css文件体积缩小了4kb，可维护性和复用性都有了极大的改善。并且引入了K-article，感觉还不错。下面要定制主页以及其他部分的样式。
+完成了LESS的重构，并且引入了K-article，感觉还不错。
 
-现在基本的功能已经上线，全面完善了自我介绍的核心功能，采用了impress.js，炫酷屌炸天。
+基本的功能已经上线，全面完善了自我介绍的核心功能，采用了impress.js，炫酷屌炸天。
+
+服务器已经部署好，地址是[kinice.top](http://www.kinice.top)。
+
+## 运行
+
+### 环境配置
+
+具体配置过程我写到了我的博客里，欢迎观看。
+
+[本博客阿里云配置过程（一）服务器及域名备案篇](http://kinice.top/article/570c82d23e1e9f0f76cfc972)
+
+[本博客阿里云配置过程（二）Node线上环境配置篇](http://kinice.top/article/57bb2805e15e9aa25b48cf60)
+
+[本博客阿里云配置过程（三）怎么让我们的Node应用跑起来](http://kinice.top/article/57ebb4ce32c50a670ba94c8f)
+
+本博客需要提前在系统里安装 `Node v5.0.0+`，`npm 3.0.0+`，`mongodb 3.0.0+`
+
+先启动`mongodb`，之后下载本项目并安装依赖
+
+```
+    $ git clone [this repository]
+
+    $ cd finalShow/
+
+    $ npm install
+
+```
+
+之后在`finalShow/`中新建一个settings.js，格式按照settings.js.default，里面填上你自己的数据库配置，然后：
+
+```
+    $ npm start
+```
