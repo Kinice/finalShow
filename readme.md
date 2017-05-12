@@ -32,19 +32,20 @@
 
 本博客需要提前在系统里安装 `Node v5.0.0+`，`npm 3.0.0+`，`mongodb 3.0.0+`
 
-先启动`mongodb`，之后下载本项目并安装依赖
+先clone本项目到本地，在`finalShow/`中新建一个settings.js，格式按照settings.js.default，里面填上你自己的数据库配置。
+
+start之前需要开启数据库哦。
+
+### 步骤
 
 ```
     $ git clone [this repository]
 
     $ cd finalShow/
 
+    $ vi settings.js //新建settings.js，内容同settings.js.default，自行更改其中配置
+
     $ npm install
 
-```
-
-之后在`finalShow/`中新建一个settings.js，格式按照settings.js.default，里面填上你自己的数据库配置，然后：
-
-```
     $ npm start
 ```
