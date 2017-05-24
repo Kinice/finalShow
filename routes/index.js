@@ -284,7 +284,7 @@ module.exports = function(app) {
     });
     //comment post
     app.post('/article/:_id', function(req, res){
-        if(getClientIp(req).ip == '5.188.211.15'){
+        if(getClientIp(req).ip.substr(0,9) == '5.188.211'){
             return false;
         }
         var date = new Date(),
