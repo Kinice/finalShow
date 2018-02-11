@@ -364,137 +364,137 @@ module.exports = function(app) {
 
 
     
-//       //rest api part
-//       app.get('/api/articleList/:tag', function (req, res) {
-//           Post.getArticlesByTag(req.params.tag, function(err, posts){
-//              if(err){
-//                  posts=[];
-//                  req.flash('error', err);
-//                  return res.redirect('/');
-//              }
-//              var ttl = Post.getTag(req.params.tag);
-//              for(var i = 0; i<posts.length; i++){
-//                  posts[i].tac = Post.getTag(posts[i].tag);
-//              }
-//              accessControlAllow(res)
-//              res.jsonp(posts);
-//          });
-//      });
-//      app.get('/api/allArticles', function (req, res){
-// accessControlAllow(res)
-//          Post.getAllArticles(null, function(err, posts){
-//              if(err){
-//                  posts = [];
-//              }
-//              for(var i = 0; i<posts.length; i++){
-//                  posts[i].tac = Post.getTag(posts[i].tag);
-//              }
-//              res.jsonp(posts);
-//          })
-//      });
-//      app.get('/api/article/:_id', function (req, res) {
-//          Post.getOneArticle(req.params._id, function(err, post){
-//              if(err){
-//                  req.flash('error', err);
-//                  return res.redirect('/');
-//              }
-//              accessControlAllow(res)
-//              res.jsonp(post);
-//          });
-//      });
-//      app.get('/api/getArticlesByName/:name', function(req,res){
-//        Post.getAllArticles(req.params.name, function(err,post){
-//          if(err){
-//            return res.jsonp(err);
-//          }
-//          accessControlAllow(res)
-//          res.jsonp(post);
-//        });
-//      });
-//      app.get('/api/search', function(req, res){
-//          Post.search(req.query.keyword,function(err,posts){
-//              if(err){
-//                  res.jsonp('error');
-//              }
-//              for(var i = 0; i<posts.length; i++){
-//                  posts[i].tac = Post.getTag(posts[i].tag);
-//              }
-//              accessControlAllow(res)
-//              res.jsonp(posts);
-//          });
-//      });
-//     app.post('/api/reg', function(req, res) {
-//        var name = req.body.name,
-//            password = req.body.password,
-//            status = [];
-//        //md5md5md5md5md5md5md5md5md5md5
-//        var md5 = crypto.createHash('md5'),
-//            password = md5.update(req.body.password).digest('hex');
-//        var newUser = new User({
-//            name: name,
-//            password: password,
-//            email: req.body.email
-//        });
-//        //check if the Database existed
-//        accessControlAllow(res)
-//        User.get(newUser.name, function(err,user){
-//            if(err){
-//                req.flash('error',err);
-//                status.push('error');
-//                return res.jsonp(status);
-//            }
-//            if(user){
-//                status.push('error1');
-//                return res.jsonp(status);
-//            }
-//            //add new user
-//            newUser.save(function(err,user){
-//               if(err){
-//                   req.flash('error',err);
-//                   status.push('error2');
-//                   return res.jsonp(status);
-//               }
-//                status.push('success');
-//                res.jsonp(status);
-//            });
-//        });
-//      });
-//      app.post('/api/login', function (req, res) {
-//          var status = [];
-//          //md5
-//          var md5 = crypto.createHash('md5'),
-//              password = md5.update(req.body.password).digest('hex');
-//          //check if the user exsisted
-//          User.get(req.body.name, function(err, user){
-//              accessControlAllow(res)
-//              if(!user){
-//                  status.push('error1');
-//                  return res.jsonp(status);
-//              }
-//              //check password
-//              if(user.password != password){
-//                  status.push('error2');
-//                  return res.jsonp(status);
-//              }
-//              status.push('success');
-//              status.push(user);
-//              res.jsonp(status);
-//          });
-//      });
-//      //api post
-//      app.post('/api/post', function (req, res) {
-//          var status = [],
-//              post = new Post(req.body.name, req.body.title, req.body.post,req.body.tag,req.body.describe);
-//              accessControlAllow(res)
-//          post.save(function(err){
-//              if(err){
-//                  status.push('error');
-//                  return res.jsonp(status);
-//              }
-//              status.push('success');
-//              res.jsonp(status);
-//          });
-//      });
+      //rest api part
+      app.get('/api/articleList/:tag', function (req, res) {
+          Post.getArticlesByTag(req.params.tag, function(err, posts){
+             if(err){
+                 posts=[];
+                 req.flash('error', err);
+                 return res.redirect('/');
+             }
+             var ttl = Post.getTag(req.params.tag);
+             for(var i = 0; i<posts.length; i++){
+                 posts[i].tac = Post.getTag(posts[i].tag);
+             }
+             accessControlAllow(res)
+             res.jsonp(posts);
+         });
+     });
+     app.get('/api/allArticles', function (req, res){
+accessControlAllow(res)
+         Post.getAllArticles(null, function(err, posts){
+             if(err){
+                 posts = [];
+             }
+             for(var i = 0; i<posts.length; i++){
+                 posts[i].tac = Post.getTag(posts[i].tag);
+             }
+             res.jsonp(posts);
+         })
+     });
+     app.get('/api/article/:_id', function (req, res) {
+         Post.getOneArticle(req.params._id, function(err, post){
+             if(err){
+                 req.flash('error', err);
+                 return res.redirect('/');
+             }
+             accessControlAllow(res)
+             res.jsonp(post);
+         });
+     });
+     app.get('/api/getArticlesByName/:name', function(req,res){
+       Post.getAllArticles(req.params.name, function(err,post){
+         if(err){
+           return res.jsonp(err);
+         }
+         accessControlAllow(res)
+         res.jsonp(post);
+       });
+     });
+     app.get('/api/search', function(req, res){
+         Post.search(req.query.keyword,function(err,posts){
+             if(err){
+                 res.jsonp('error');
+             }
+             for(var i = 0; i<posts.length; i++){
+                 posts[i].tac = Post.getTag(posts[i].tag);
+             }
+             accessControlAllow(res)
+             res.jsonp(posts);
+         });
+     });
+    app.post('/api/reg', function(req, res) {
+       var name = req.body.name,
+           password = req.body.password,
+           status = [];
+       //md5md5md5md5md5md5md5md5md5md5
+       var md5 = crypto.createHash('md5'),
+           password = md5.update(req.body.password).digest('hex');
+       var newUser = new User({
+           name: name,
+           password: password,
+           email: req.body.email
+       });
+       //check if the Database existed
+       accessControlAllow(res)
+       User.get(newUser.name, function(err,user){
+           if(err){
+               req.flash('error',err);
+               status.push('error');
+               return res.jsonp(status);
+           }
+           if(user){
+               status.push('error1');
+               return res.jsonp(status);
+           }
+           //add new user
+           newUser.save(function(err,user){
+              if(err){
+                  req.flash('error',err);
+                  status.push('error2');
+                  return res.jsonp(status);
+              }
+               status.push('success');
+               res.jsonp(status);
+           });
+       });
+     });
+     app.post('/api/login', function (req, res) {
+         var status = [];
+         //md5
+         var md5 = crypto.createHash('md5'),
+             password = md5.update(req.body.password).digest('hex');
+         //check if the user exsisted
+         User.get(req.body.name, function(err, user){
+             accessControlAllow(res)
+             if(!user){
+                 status.push('error1');
+                 return res.jsonp(status);
+             }
+             //check password
+             if(user.password != password){
+                 status.push('error2');
+                 return res.jsonp(status);
+             }
+             status.push('success');
+             status.push(user);
+             res.jsonp(status);
+         });
+     });
+     //api post
+     app.post('/api/post', function (req, res) {
+         var status = [],
+             post = new Post(req.body.name, req.body.title, req.body.post,req.body.tag,req.body.describe);
+             accessControlAllow(res)
+         post.save(function(err){
+             if(err){
+                 status.push('error');
+                 return res.jsonp(status);
+             }
+             status.push('success');
+             res.jsonp(status);
+         });
+     });
      app.post('/api/qrimage', function (req, res){
         accessControlAllow(res)
         var final = {
@@ -511,33 +511,33 @@ module.exports = function(app) {
         
         res.jsonp(final)
      });
-//      //api comment
-//      app.post('/api/article/:_id', function(req, res){
-//          var status = [];
-//          var date = new Date(),
-//              time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()),
-//              md5 = crypto.createHash('md5'),
-//              emailMd5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
-//              head = 'http://gravatar.duoshuo.com/avatar/'+emailMd5;
-//          var comment = {
-//              name: req.body.uname || '',
-//              email: req.body.email || 'szp93@126.com',
-//              time: time,
-//              content: req.body.content,
-//              head:head
-//          }
-//          var newComment = new Comment(req.params._id,comment);
-//          newComment.save(function(err){
-//              if(err){
-//                accessControlAllow(res)
-//                status.push('error');
-//                return res.jsonp(status);
-//              }
-//              accessControlAllow(res)
-//              status.push('success');
-//               res.jsonp(status);
-//           });
-//       });
+     //api comment
+     app.post('/api/article/:_id', function(req, res){
+         var status = [];
+         var date = new Date(),
+             time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()),
+             md5 = crypto.createHash('md5'),
+             emailMd5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
+             head = 'http://gravatar.duoshuo.com/avatar/'+emailMd5;
+         var comment = {
+             name: req.body.uname || '',
+             email: req.body.email || 'szp93@126.com',
+             time: time,
+             content: req.body.content,
+             head:head
+         }
+         var newComment = new Comment(req.params._id,comment);
+         newComment.save(function(err){
+             if(err){
+               accessControlAllow(res)
+               status.push('error');
+               return res.jsonp(status);
+             }
+             accessControlAllow(res)
+             status.push('success');
+              res.jsonp(status);
+          });
+      });
 
     //function part
     function accessControlAllow(res){
