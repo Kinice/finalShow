@@ -1,8 +1,9 @@
 var crypto = require('crypto'),
     User = require('../models/user.js'),
     Post = require('../models/post.js'),
-    Comment = require('../models/comment.js')
-    Qr = require('../models/qrimage.js')
+    Comment = require('../models/comment.js'),
+    Qr = require('../models/qrimage.js'),
+    IO = require('../models/socket.js')
     
 /**
  *                    .::::.
@@ -24,7 +25,6 @@ var crypto = require('crypto'),
  * ```` ':.          ':::::::::'                  ::::..
  *                    '.:::::'                    ':'````..
  */
-
 module.exports = function(app) {
     //主页
     app.get('/', function (req, res) {
@@ -361,12 +361,16 @@ module.exports = function(app) {
             res.redirect('back');
         });
     });
-
-
+    // socket.io test
+    app.get('/chat', function(req, res){
+        res.render('chat', {
+            title: '聊天室'
+        })
+    })
     
-      //rest api part
-      app.get('/api/articleList/:tag', function (req, res) {
-          Post.getArticlesByTag(req.params.tag, function(err, posts){
+    //rest api part
+    app.get('/api/articleList/:tag', function (req, res) {
+        Post.getArticlesByTag(req.params.tag, function(err, posts){
              if(err){
                  posts=[];
                  req.flash('error', err);
@@ -381,7 +385,7 @@ module.exports = function(app) {
          });
      });
      app.get('/api/allArticles', function (req, res){
-accessControlAllow(res)
+        accessControlAllow(res)
          Post.getAllArticles(null, function(err, posts){
              if(err){
                  posts = [];

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Kinice chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="#">
+      <input id="m" autocomplete="off" /><button id="send">Send</button>
+    </form>
+    <script src="/static/js/socket.io.js"></script>
+    <script>
+        var socket = io()
+        var i = 0
+        var sendButton = document.getElementById('send')
+        var message = document.getElementById('m')
+
+        sendButton.addEventListener('click', function(e) {
+          e.preventDefault()
+          var msg = message.value
+          if(!msg) {
+            return
+          }
+          socket.emit('socket message', msg)
+          message.value = ''
+        })
+
+        socket.on('socket message', function(msg) {
+            var ul = document.getElementById('messages')
+            var li = document.createElement('li')
+            li.innerText = msg
+            ul.appendChild(li)
+        })
+    </script>
+  </body>
+</html>
