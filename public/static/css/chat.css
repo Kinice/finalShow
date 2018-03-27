@@ -4,6 +4,37 @@
   height: 0;
   clear: both;
 }
+.login {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login .login-con {
+  text-align: center;
+  height: 80px;
+}
+.login .login-con .login-title {
+  color: #fff;
+  font-size: 30px;
+}
+.login .login-con #username {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  font-size: 17px;
+  display: inline-block;
+  margin-top: 30px;
+  text-align: center;
+  padding-bottom: 3px;
+}
 .g-hd {
   background-color: #fff;
   height: 40px;
