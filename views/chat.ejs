@@ -54,7 +54,7 @@
 
         socket.on('socket message', function(msg) {
             if(timeStamp != msg.stamp) {
-              body.appendChild(createMsgBox(msg, false))
+              body.appendChild(createMsgBox(msg.msg, false))
             }
             body.scrollTop = body.scrollHeight
         })
