@@ -1,0 +1,130 @@
+.clearfix:after {
+  display: block;
+  content: '';
+  height: 0;
+  clear: both;
+}
+.g-hd {
+  background-color: #fff;
+  height: 40px;
+  border-bottom: 1px solid #e2e2e2;
+}
+.g-hd .title {
+  text-align: center;
+  font-size: 17px;
+  line-height: 40px;
+}
+.g-bd {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: 40px;
+  margin-bottom: 120px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px;
+}
+.g-bd .desc-tip {
+  padding: 20px 0;
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+}
+.g-bd .chat-msg-box {
+  display: block;
+  padding: 10px 0;
+  position: relative;
+  margin-top: 10px;
+}
+.g-bd .chat-msg-box:after {
+  display: block;
+  content: '';
+  height: 0;
+  clear: both;
+}
+.g-bd .chat-msg-box .avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #336699;
+  text-align: center;
+  line-height: 36px;
+  color: #fff;
+  font-size: 12px;
+}
+.g-bd .chat-msg-box .chat-msg {
+  position: relative;
+  max-width: 70%;
+  display: inline-block;
+  padding: 7px 10px;
+  line-height: 1.5;
+  background-color: #fff;
+  margin: 0 10px;
+  border-radius: 4px;
+}
+.g-bd .chat-msg-box .name {
+  position: absolute;
+  top: -13px;
+}
+.g-bd .chat-msg-box.others .avatar {
+  float: left;
+}
+.g-bd .chat-msg-box.others .chat-msg {
+  float: left;
+}
+.g-bd .chat-msg-box.others .chat-msg:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 6px;
+  top: 13px;
+  left: -12px;
+  border-color: transparent #fff transparent transparent;
+}
+.g-bd .chat-msg-box.others .name {
+  left: 45px;
+}
+.g-bd .chat-msg-box.self .avatar {
+  float: right;
+}
+.g-bd .chat-msg-box.self .chat-msg {
+  float: right;
+  background-color: #66FF33;
+}
+.g-bd .chat-msg-box.self .chat-msg:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 6px;
+  top: 13px;
+  right: -12px;
+  border-color: transparent transparent transparent #66FF33;
+}
+.g-bd .chat-msg-box.self .name {
+  right: 45px;
+}
+.g-chatpart {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  border-top: 1px solid #e2e2e2;
+  box-sizing: border-box;
+}
+.g-chatpart textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 10px;
+  box-sizing: border-box;
+  display: block;
+}

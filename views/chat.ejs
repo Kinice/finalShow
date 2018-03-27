@@ -1,46 +1,88 @@
 <!doctype html>
 <html>
   <head>
-    <title>Kinice chat</title>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
-    </style>
+    <meta name="keywords" content="Kinice的个人博客">
+    <meta name="description" content="Kinice的个人博客，分享kinice的点滴生活">
+    <meta name="author" content="Kinice">
+    <meta name="baidu-site-verification" content="yo7pE95Dym" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/static/css/basic.css" />
+    <link rel="stylesheet" href="/static/css/chat.css" />
+    <link rel="stylesheet" href="/static/fonts/iconfont.css"/>
+    <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
   </head>
   <body>
-    <ul id="messages"></ul>
-    <form action="#">
-      <input id="m" autocomplete="off" /><button id="send">Send</button>
-    </form>
+    <div class="g-hd">
+      <h1 class="title">
+        聊天室
+      </h1>
+    </div>
+    <div class="g-bd" id="msg-body">
+      
+    </div>
+    <div class="g-chatpart">
+      <textarea name="chat" id="chat" placeholder="What u wanna say?"></textarea>
+    </div>
     <script src="/static/js/socket.io.js"></script>
     <script>
         var socket = io()
         var i = 0
-        var sendButton = document.getElementById('send')
-        var message = document.getElementById('m')
+        var textarea = document.getElementById('chat')
+        var body = document.getElementById('msg-body')
+        var timeStamp = new Date().getTime()
 
-        sendButton.addEventListener('click', function(e) {
+        textarea.addEventListener('keypress', function(e) {
           e.preventDefault()
-          var msg = message.value
-          if(!msg) {
-            return
+          if(e.keyCode == 13) {
+            var msg = textarea.value
+            if(!msg) {
+              return
+            }
+            var finalMsg = {
+              msg: msg,
+              stamp: timeStamp
+            }
+            socket.emit('socket message', finalMsg)
+            textarea.value = ''
+            body.appendChild(createMsgBox(finalMsg.msg, true))
+          } else {
+            textarea.value += e.key
           }
-          socket.emit('socket message', msg)
-          message.value = ''
         })
 
         socket.on('socket message', function(msg) {
-            var ul = document.getElementById('messages')
-            var li = document.createElement('li')
-            li.innerText = msg
-            ul.appendChild(li)
+            if(timeStamp != msg.stamp) {
+              body.appendChild(createMsgBox(msg, false))
+            }
+            body.scrollTop = body.scrollHeight
         })
+
+        function createMsgBox(msg, isSelf) {
+          var msgBox = document.createElement('div')
+          var avatar = document.createElement('div')
+          var msgCon = document.createElement('div')
+          var name = document.createElement('div')
+
+          avatar.innerText = '头像'
+          avatar.className = 'avatar'
+
+          msgCon.innerText = msg
+          msgCon.className = 'chat-msg'
+
+          name.innerText = 'Kinice'
+          name.className = 'name'
+
+          msgBox.appendChild(avatar)
+          msgBox.appendChild(msgCon)
+          msgBox.appendChild(name)
+          msgBox.className = 'chat-msg-box'
+
+          isSelf ? msgBox.className += ' self' : msgBox.className += ' others' 
+
+          return msgBox
+        }
     </script>
   </body>
 </html>
