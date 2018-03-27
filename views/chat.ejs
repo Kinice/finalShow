@@ -49,6 +49,10 @@
               if(namespace.value) {
                 username = namespace.value
                 document.body.removeChild(login)
+                socket.emit('user connect', {
+                  username: username,
+                  stamp: timeStamp
+                })
               }
             } else {
               namespace.value += e.key
@@ -81,6 +85,17 @@
               }
               body.scrollTop = body.scrollHeight
           })
+
+          socket.on('user connect', function(msg) {
+              body.appendChild(createTip(msg.username + ' 进入聊天室'))
+              body.scrollTop = body.scrollHeight
+          })
+
+          socket.on('user disconnect', function(msg) {
+              console.log(msg)
+              body.appendChild(createTip(msg.username + ' 离开了聊天室'))
+              body.scrollTop = body.scrollHeight
+          })
         }
 
         function createMsgBox(msg, isSelf) {
@@ -106,6 +121,15 @@
           isSelf ? msgBox.className += ' self' : msgBox.className += ' others' 
 
           return msgBox
+        }
+
+        function createTip(msg) {
+          var tip = document.createElement('div')
+
+          tip.className = 'desc-tip'
+          tip.innerText = msg
+
+          return tip
         }
     </script>
   </body>
