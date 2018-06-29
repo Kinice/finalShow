@@ -25,6 +25,6 @@ socketio.getSocketio = function(server){
             })
         });
     });
-};  
+};
   
 module.exports = socketio;
