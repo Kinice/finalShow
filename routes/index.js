@@ -36,7 +36,7 @@ module.exports = function(app) {
                 posts = [];
             }
 			for(var i = 0; i<posts.length; i++){
-				posts[i].tac = Post.getTag(posts[i].tag);
+				posts[i].tac = Post.getTag(posts[i].tag)
 			}
             res.render('index', {
                 title: '主页-Kinice的个人博客',
@@ -50,7 +50,7 @@ module.exports = function(app) {
     //注册
     app.get('/reg', checkNotLogin);
     app.get('/reg', function (req, res) {
-        console.log(getClientIp(req).ip+getClientIp(req).time);
+        console.log(getClientIp(req).ip+getClientIp(req).time)
         res.render('reg', {
             title: '注册-Kinice的个人博客',
             user: req.session.user,
@@ -61,15 +61,15 @@ module.exports = function(app) {
     app.post('/reg', function (req, res) {
         var name = req.body.name,
             password = req.body.password,
-            password_re = req.body['password-repeat'];
+            password_re = req.body['password-repeat']
         //check user two times the password is the same
         if(password_re != password){
-            req.flash('error','双验证密码不符，禁止进入系统');
-            return res.redirect('/reg');
+            req.flash('error','双验证密码不符，禁止进入系统')
+            return res.redirect('/reg')
         }
         //md5md5md5md5md5md5md5md5md5md5
         var md5 = crypto.createHash('md5'),
-            password = md5.update(req.body.password).digest('hex');
+            password = md5.update(req.body.password).digest('hex')
         var newUser = new User({
             name: name,
             password: password,
@@ -81,20 +81,20 @@ module.exports = function(app) {
         User.get(newUser.name, function(err,user){
             if(err){
                 req.flash('error',err);
-                return res.redirect('/');
+                return res.redirect('/')
             }
             if(user){
-                req.flash('error','人员身份冲突，无法确定是否为侵入者');
-                return res.redirect('/reg');
+                req.flash('error','人员身份冲突，无法确定是否为侵入者')
+                return res.redirect('/reg')
             }
             //add new user
             newUser.save(function(err,user){
                if(err){
-                   req.flash('error',err);
-                   return res.redirect('/reg');
+                   req.flash('error',err)
+                   return res.redirect('/reg')
                }
-                req.session.user = user;//save user`s information into session
-                req.flash('success','身份确认无误，信息写入');
+                req.session.user = user //save user`s information into session
+                req.flash('success','身份确认无误，信息写入')
                 res.redirect('/');
             });
         });
@@ -102,36 +102,36 @@ module.exports = function(app) {
     //登录
     app.get('/login', checkNotLogin);
     app.get('/login', function (req, res) {
-        console.log(getClientIp(req).ip+getClientIp(req).time);
+        console.log(getClientIp(req).ip+getClientIp(req).time)
         res.render('login', {
             title: '登录-Kinice的个人博客',
             user:req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
-        });
-    });
+        })
+    })
     app.post('/login', function (req, res) {
         //md5
         if(req.body.name==''||req.body.password==''){
-          req.flash('error','你逗我呢？');
-          return res.redirect('/login');
+          req.flash('error','你逗我呢？')
+          return res.redirect('/login')
         }
         var md5 = crypto.createHash('md5'),
-            password = md5.update(req.body.password).digest('hex');
+            password = md5.update(req.body.password).digest('hex')
         //check if the user exsisted
         User.get(req.body.name, function(err, user){
             if(!user){
-                req.flash('error','检测不到身份信息，疑似入侵者');
-                return res.redirect('/login');
+                req.flash('error','检测不到身份信息，疑似入侵者')
+                return res.redirect('/login')
             }
             //check password
             if(user.password != password){
-                req.flash('error','密码验证失败！警报！');
-                return res.redirect('/login');
+                req.flash('error','密码验证失败！警报！')
+                return res.redirect('/login')
             }
             //success
-            req.session.user = user;
-            req.flash('success','身份验证通过，准许通过');
+            req.session.user = user
+            req.flash('success','身份验证通过，准许通过')
             res.redirect('/')
         });
     });

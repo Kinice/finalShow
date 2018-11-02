@@ -43,7 +43,7 @@ start之前需要开启数据库哦。
 
     $ cd finalShow/
 
-    $ vi settings.js #新建settings.js，内容同settings.js.default，自行更改其中配置
+    $ cp settings.js.default settiongs.js #新建settings.js，内容同settings.js.default，自行更改其中配置
 
     $ npm install
 
