@@ -27,7 +27,7 @@ router.get('/articleList/:tag', function (req, res) {
            posts[i].tac = Post.getTag(posts[i].tag);
        }
     
-       res.jsonp(posts);
+       res.send(posts);
    });
 });
 router.get('/allArticles', function (req, res){
@@ -38,7 +38,7 @@ router.get('/allArticles', function (req, res){
        for(var i = 0; i<posts.length; i++){
            posts[i].tac = Post.getTag(posts[i].tag);
        }
-       res.jsonp(posts);
+       res.send(posts);
    })
 });
 router.get('/article/:_id', function (req, res) {
@@ -48,28 +48,28 @@ router.get('/article/:_id', function (req, res) {
            return res.redirect('/');
        }
     
-       res.jsonp(post);
+       res.send(post);
    });
 });
 router.get('/getArticlesByName/:name', function(req,res){
  Post.getAllArticles(req.params.name, function(err,post){
    if(err){
-     return res.jsonp(err);
+     return res.send(err);
    }
 
-   res.jsonp(post);
+   res.send(post);
  });
 });
 router.get('/search', function(req, res){
    Post.search(req.query.keyword,function(err,posts){
        if(err){
-           res.jsonp('error');
+           res.send('error');
        }
        for(var i = 0; i<posts.length; i++){
            posts[i].tac = Post.getTag(posts[i].tag);
        }
     
-       res.jsonp(posts);
+       res.send(posts);
    });
 });
 router.post('/reg', function(req, res) {
@@ -89,21 +89,21 @@ router.post('/reg', function(req, res) {
      if(err){
          req.flash('error',err);
          status.push('error');
-         return res.jsonp(status);
+         return res.send(status);
      }
      if(user){
          status.push('error1');
-         return res.jsonp(status);
+         return res.send(status);
      }
      //add new user
      newUser.save(function(err,user){
         if(err){
             req.flash('error',err);
             status.push('error2');
-            return res.jsonp(status);
+            return res.send(status);
         }
          status.push('success');
-         res.jsonp(status);
+         res.send(status);
      });
  });
 });
@@ -117,16 +117,16 @@ router.post('/login', function (req, res) {
     
        if(!user){
            status.push('error1');
-           return res.jsonp(status);
+           return res.send(status);
        }
        //check password
        if(user.password != password){
            status.push('error2');
-           return res.jsonp(status);
+           return res.send(status);
        }
        status.push('success');
        status.push(user);
-       res.jsonp(status);
+       res.send(status);
    });
 });
 //api post
@@ -137,10 +137,10 @@ router.post('/post', function (req, res) {
    post.save(function(err){
        if(err){
            status.push('error');
-           return res.jsonp(status);
+           return res.send(status);
        }
        status.push('success');
-       res.jsonp(status);
+       res.send(status);
    });
 });
 
@@ -154,10 +154,13 @@ router.post('/qrimage', function (req, res){
           final.err = err
           return console.error(err)
       }
-      final.qr_string = result
+      final.qr_string = result.svg // 兼容以前的crx版本
+      final.svg_string = result.svg
+      final.png_string = result.png.toString('base64')
+      final.png_buffer = result.png
   });
   
-  res.jsonp(final)
+  res.send(final)
 });
 //api comment
 router.post('/article/:_id', function(req, res){
@@ -179,11 +182,11 @@ router.post('/article/:_id', function(req, res){
        if(err){
       
          status.push('error');
-         return res.jsonp(status);
+         return res.send(status);
        }
     
        status.push('success');
-        res.jsonp(status);
+        res.send(status);
     });
 });
 
