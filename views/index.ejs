@@ -6,34 +6,38 @@
                 <p>I'm free to be the GREATEST</p>
             </div>
         </div>
-        <div class="g-inner">
+        <% if(posts.length === 0) { %>
+          <div style="font-size: 30px; color: #999; font-weight: 500; padding-top: 50px; text-align: center;">网站正在升级维护，请期待</div>
+        <% } else { %>
+          <div class="g-inner">
             <% posts.forEach(function (post, index) { %>
-            <div class="m-index">
-              <h2>			  
-                  <a href="article/<%= post._id %>"><%= post.title %></a>
-                  <% if(user && user.name === 'Kinice'){ %>
-                  <a href="remove/<%= post._id %>"><i class="iconfont delete">&#xe611;</i></a>
-                  <a href="edit/<%= post._id %>"><i class="iconfont delete">&#xe601;</i></a>
-                  <% } %>
-              </h2>
-              <p class="info">
-                <%= post.name %> · <%= post.time.day %> · 分类：<a href="/articleList/<%= post.tag %>"><%= post.tac %></a><% if(typeof post.describe=='object'){ %>
-                    <%=' · 标签：'%>
-                    <% post.describe.forEach(function(i,index){ %>
-                         <a href="/search?keyword=<%= i %>"><%= i %></a>
-                    <% }) %>
-                  <% } %>
-              </p>
-              <p class="info">
-                <i class="iconfont delete">&#xe610;&nbsp;</i><%=  post.comments.length %>
-              </p>
-              <% if(post.prepost.length>160){%>
-              <p class="pre"><%- post.prepost.substr(0,160) + '...' %></p>
-              <%}else{%>
-              <p class="pre"><%- post.prepost %></p>
-              <%}%>
-            </div>
+              <div class="m-index">
+                <h2>        
+                    <a href="article/<%= post._id %>"><%= post.title %></a>
+                    <% if(user && user.name === 'Kinice'){ %>
+                    <a href="remove/<%= post._id %>"><i class="iconfont delete">&#xe611;</i></a>
+                    <a href="edit/<%= post._id %>"><i class="iconfont delete">&#xe601;</i></a>
+                    <% } %>
+                </h2>
+                <p class="info">
+                  <%= post.name %> · <%= post.time.day %> · 分类：<a href="/articleList/<%= post.tag %>"><%= post.tac %></a><% if(typeof post.describe=='object'){ %>
+                      <%=' · 标签：'%>
+                      <% post.describe.forEach(function(i,index){ %>
+                           <a href="/search?keyword=<%= i %>"><%= i %></a>
+                      <% }) %>
+                    <% } %>
+                </p>
+                <p class="info">
+                  <i class="iconfont delete">&#xe610;&nbsp;</i><%=  post.comments.length %>
+                </p>
+                <% if(post.prepost.length>160){%>
+                <p class="pre"><%- post.prepost.substr(0,160) + '...' %></p>
+                <%}else{%>
+                <p class="pre"><%- post.prepost %></p>
+                <%}%>
+              </div>
             <% }) %>
-        </div>
+          </div>
+        <% } %>
     </div>
 <%- include footer %>
