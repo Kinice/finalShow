@@ -33,7 +33,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.1",
     "hoek": "^5.0.3",
-    "kerberos": "0.0.23",
+    "kerberos": "1.0.0",
     "qr-image": "^3.2.0"
   }
 }
